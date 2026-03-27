@@ -130,7 +130,7 @@ export function OnboardingContent() {
     if (currentStep === 'complete') {
         return (
             <div className="max-w-2xl mx-auto px-6 py-12">
-                <div className="border border-slate-200 dark:border-slate-700 rounded-lg p-8 text-center space-y-4">
+                <div className="border border-slate-200 dark:border-border rounded-lg p-8 text-center space-y-4">
                     <CheckCircle2 className="h-12 w-12 text-green-600 mx-auto" />
                     <div>
                         <h2 className="text-2xl font-semibold text-slate-900 dark:text-white">
@@ -154,8 +154,8 @@ export function OnboardingContent() {
                         <div
                             key={step}
                             className={`h-1 flex-1 rounded-full transition-colors ${step <= currentStep
-                                    ? 'bg-primary'
-                                    : 'bg-slate-200 dark:bg-border'
+                                ? 'bg-primary'
+                                : 'bg-slate-200 dark:bg-border'
                                 }`}
                         />
                     ))}

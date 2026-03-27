@@ -67,7 +67,7 @@ export function WaitingApprovalContent() {
         <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white dark:from-slate-900 dark:to-slate-800 flex items-center justify-center p-4">
             <div className="w-full max-w-lg">
                 {/* Onboarding Complete */}
-                <Card className="mb-6 p-6 border border-slate-200 dark:border-slate-700">
+                <Card className="mb-6 p-6 border border-slate-200 dark:border-border">
                     <div className="flex items-start gap-4">
                         <CheckCircle2 className="w-8 h-8 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" />
                         <div>
@@ -139,7 +139,7 @@ export function WaitingApprovalContent() {
                 )}
 
                 {/* User Info */}
-                <Card className="mb-6 p-6 border border-slate-200 dark:border-slate-700">
+                <Card className="mb-6 p-6 border border-slate-200 dark:border-border">
                     <h3 className="font-bold text-slate-900 dark:text-white mb-3">Account Information</h3>
                     <div className="space-y-2 text-sm text-slate-600 dark:text-slate-400">
                         <div>
@@ -151,8 +151,8 @@ export function WaitingApprovalContent() {
                         <div>
                             <span className="font-medium text-slate-900 dark:text-white">Status:</span>{' '}
                             <span className={`inline-block px-2 py-1 rounded text-xs font-medium ${isPending ? 'bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200' :
-                                    isRejected ? 'bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200' :
-                                        'bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200'
+                                isRejected ? 'bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200' :
+                                    'bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200'
                                 }`}>
                                 {profile?.artisanStatus ? profile.artisanStatus.charAt(0).toUpperCase() + profile.artisanStatus.slice(1) : 'Unknown'}
                             </span>
@@ -162,7 +162,7 @@ export function WaitingApprovalContent() {
 
                 {/* What's Next */}
                 {isPending && (
-                    <Card className="mb-6 p-6 border border-slate-200 dark:border-slate-700">
+                    <Card className="mb-6 p-6 border border-slate-200 dark:border-border">
                         <h3 className="font-bold text-slate-900 dark:text-white mb-3">While You Wait</h3>
                         <ul className="text-sm text-slate-600 dark:text-slate-400 space-y-2">
                             <li>✓ Check your email regularly for updates</li>

@@ -83,7 +83,7 @@ export function VerificationsPageContent() {
                 {/* Verifications skeleton */}
                 <div className="space-y-3">
                     {[...Array(5)].map((_, i) => (
-                        <div key={i} className="border border-slate-200 dark:border-slate-700 rounded-lg p-4">
+                        <div key={i} className="border border-slate-200 dark:border-border rounded-lg p-4">
                             <Skeleton className="h-5 w-1/2 mb-3" />
                             <Skeleton className="h-4 w-full mb-2" />
                             <Skeleton className="h-4 w-3/4" />
@@ -97,7 +97,7 @@ export function VerificationsPageContent() {
     return (
         <div className="space-y-6">
             {/* Filter Tabs */}
-            <div className="flex gap-2 flex-wrap border-b border-slate-200 dark:border-slate-700 pb-4">
+            <div className="flex gap-2 flex-wrap border-b border-slate-200 dark:border-border pb-4">
                 {[
                     { label: 'All', value: 'all', count: verifications.length },
                     { label: 'Verified', value: 'verified', count: verifications.filter(v => v.status === 'verified').length },
@@ -108,8 +108,8 @@ export function VerificationsPageContent() {
                         key={tab.value}
                         onClick={() => setFilter(tab.value as any)}
                         className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${filter === tab.value
-                                ? 'bg-primary text-white shadow-sm'
-                                : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800'
+                            ? 'bg-primary text-white shadow-sm'
+                            : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800'
                             }`}
                     >
                         {tab.label} <span className="ml-1 text-xs opacity-75">({tab.count})</span>
@@ -121,7 +121,7 @@ export function VerificationsPageContent() {
             {filteredVerifications.length > 0 ? (
                 <div className="space-y-3">
                     {filteredVerifications.map((verification) => (
-                        <div key={verification.id} className="border border-slate-200 dark:border-slate-700 rounded-lg p-4 hover:shadow-sm transition-shadow">
+                        <div key={verification.id} className="border border-slate-200 dark:border-border rounded-lg p-4 hover:shadow-sm transition-shadow">
                             <div className="flex items-start justify-between gap-4">
                                 <div className="flex items-start gap-3 flex-1 min-w-0">
                                     <div className="mt-0.5 flex-shrink-0">{getStatusIcon(verification.status)}</div>
@@ -172,8 +172,8 @@ export function VerificationsPageContent() {
 
             {/* Summary Stats */}
             {verifications.length > 0 && (
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 pt-6 border-t border-slate-200 dark:border-slate-700">
-                    <div className="border border-slate-200 dark:border-slate-700 rounded-lg p-4">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 pt-6 border-t border-slate-200 dark:border-border">
+                    <div className="border border-slate-200 dark:border-border rounded-lg p-4">
                         <p className="text-xs font-semibold uppercase tracking-wide text-slate-600 dark:text-slate-400 mb-2">
                             Total Verifications
                         </p>
@@ -181,7 +181,7 @@ export function VerificationsPageContent() {
                             {verifications.length}
                         </p>
                     </div>
-                    <div className="border border-slate-200 dark:border-slate-700 rounded-lg p-4">
+                    <div className="border border-slate-200 dark:border-border rounded-lg p-4">
                         <p className="text-xs font-semibold uppercase tracking-wide text-green-600 dark:text-green-400 mb-2">
                             Verified
                         </p>
@@ -189,7 +189,7 @@ export function VerificationsPageContent() {
                             {verifications.filter(v => v.status === 'verified').length}
                         </p>
                     </div>
-                    <div className="border border-slate-200 dark:border-slate-700 rounded-lg p-4">
+                    <div className="border border-slate-200 dark:border-border rounded-lg p-4">
                         <p className="text-xs font-semibold uppercase tracking-wide text-yellow-600 dark:text-yellow-400 mb-2">
                             Pending
                         </p>
@@ -197,7 +197,7 @@ export function VerificationsPageContent() {
                             {verifications.filter(v => v.status === 'pending').length}
                         </p>
                     </div>
-                    <div className="border border-slate-200 dark:border-slate-700 rounded-lg p-4">
+                    <div className="border border-slate-200 dark:border-border rounded-lg p-4">
                         <p className="text-xs font-semibold uppercase tracking-wide text-red-600 dark:text-red-400 mb-2">
                             Invalid
                         </p>

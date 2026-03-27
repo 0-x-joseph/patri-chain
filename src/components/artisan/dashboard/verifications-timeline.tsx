@@ -15,7 +15,8 @@ interface VerificationsTimelineProps {
 }
 
 export function VerificationsTimeline({ verifications }: VerificationsTimelineProps) {
-    if (verifications === null) {
+    // Show skeleton while loading
+    if (!verifications) {
         return (
             <div className="border border-slate-200 dark:border-border rounded-lg p-6">
                 <h2 className="text-lg font-semibold text-slate-900 dark:text-foreground mb-6">
@@ -37,12 +38,12 @@ export function VerificationsTimeline({ verifications }: VerificationsTimelinePr
     }
 
     return (
-        <div className="border border-slate-200 dark:border-slate-700 rounded-lg p-6">
+        <div className="border border-slate-200 dark:border-border rounded-lg p-6">
             <h2 className="text-lg font-semibold text-slate-900 dark:text-foreground mb-6">
                 Recent Verifications
             </h2>
 
-            {!verifications || verifications.length === 0 ? (
+            {verifications.length === 0 ? (
                 <p className="text-center text-slate-600 dark:text-slate-400 py-12">
                     No verifications yet.
                 </p>
@@ -67,8 +68,8 @@ export function VerificationsTimeline({ verifications }: VerificationsTimelinePr
                                     </h3>
                                     <span
                                         className={`text-xs font-semibold px-2 py-1 rounded border flex-shrink-0 transition-colors ${verification.status === 'confirmed'
-                                                ? 'bg-green-100 dark:bg-green-900 border-green-300 dark:border-green-700 text-green-700 dark:text-green-300'
-                                                    : 'bg-slate-100 dark:bg-muted border-slate-300 dark:border-border text-slate-700 dark:text-slate-300'
+                                            ? 'bg-green-100 dark:bg-green-900 border-green-300 dark:border-green-700 text-green-700 dark:text-green-300'
+                                            : 'bg-slate-100 dark:bg-muted border-slate-300 dark:border-border text-slate-700 dark:text-slate-300'
                                             }`}
                                     >
                                         {verification.status.charAt(0).toUpperCase() +

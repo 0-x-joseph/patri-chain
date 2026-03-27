@@ -16,7 +16,8 @@ interface RecentProductsProps {
 }
 
 export function RecentProducts({ products }: RecentProductsProps) {
-    if (products === null) {
+    // Show skeleton while loading
+    if (!products) {
         return (
             <div className="border border-slate-200 dark:border-border rounded-lg p-6">
                 <h2 className="text-lg font-semibold text-slate-900 dark:text-foreground mb-6">
@@ -42,12 +43,12 @@ export function RecentProducts({ products }: RecentProductsProps) {
     }
 
     return (
-        <div className="border border-slate-200 dark:border-slate-700 rounded-lg p-6">
+        <div className="border border-slate-200 dark:border-border rounded-lg p-6">
             <h2 className="text-lg font-semibold text-slate-900 dark:text-foreground mb-6">
                 Recent Products
             </h2>
 
-            {!products || products.length === 0 ? (
+            {products.length === 0 ? (
                 <p className="text-center text-slate-600 dark:text-slate-400 py-12">
                     No products yet. Add your first product to get started.
                 </p>
@@ -90,10 +91,10 @@ export function RecentProducts({ products }: RecentProductsProps) {
                                     <div className="flex gap-2">
                                         <span
                                             className={`text-xs font-semibold px-2 py-1 rounded border transition-colors ${product.status === 'verified'
-                                                    ? 'bg-green-100 dark:bg-green-900 border-green-300 dark:border-green-700 text-green-700 dark:text-green-300'
-                                                    : product.status === 'pending'
-                                                        ? 'bg-amber-100 dark:bg-amber-900 border-amber-300 dark:border-amber-700 text-amber-700 dark:text-amber-300'
-                                                        : 'bg-red-100 dark:bg-red-900 border-red-300 dark:border-red-700 text-red-700 dark:text-red-300'
+                                                ? 'bg-green-100 dark:bg-green-900 border-green-300 dark:border-green-700 text-green-700 dark:text-green-300'
+                                                : product.status === 'pending'
+                                                    ? 'bg-amber-100 dark:bg-amber-900 border-amber-300 dark:border-amber-700 text-amber-700 dark:text-amber-300'
+                                                    : 'bg-red-100 dark:bg-red-900 border-red-300 dark:border-red-700 text-red-700 dark:text-red-300'
                                                 }`}
                                         >
                                             {product.status.charAt(0).toUpperCase() + product.status.slice(1)}
@@ -101,8 +102,8 @@ export function RecentProducts({ products }: RecentProductsProps) {
 
                                         <span
                                             className={`text-xs font-semibold px-2 py-1 rounded border transition-colors ${product.blockchainStatus === 'confirmed'
-                                                    ? 'bg-blue-100 dark:bg-blue-900 border-blue-300 dark:border-blue-700 text-blue-700 dark:text-blue-300'
-                                                    : 'bg-slate-100 dark:bg-muted border-slate-300 dark:border-border text-slate-700 dark:text-slate-300'
+                                                ? 'bg-blue-100 dark:bg-blue-900 border-blue-300 dark:border-blue-700 text-blue-700 dark:text-blue-300'
+                                                : 'bg-slate-100 dark:bg-muted border-slate-300 dark:border-border text-slate-700 dark:text-slate-300'
                                                 }`}
                                         >
                                             {product.blockchainStatus.charAt(0).toUpperCase() +

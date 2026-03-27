@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
+import dynamic from 'next/dynamic';
 import { WelcomeHeader } from './welcome-header';
 import { StatsCards } from './stats-cards';
 import { RecentProducts } from './recent-products';
@@ -39,8 +40,10 @@ export function DashboardContent() {
     const [data, setData] = useState<DashboardData | null>(null);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+    const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
+        setMounted(true);
         fetchDashboardData();
     }, []);
 
@@ -57,6 +60,10 @@ export function DashboardContent() {
         } finally {
             setIsLoading(false);
         }
+    }
+
+    if (!mounted) {
+        return null;
     }
 
     if (error) {

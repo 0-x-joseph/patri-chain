@@ -95,7 +95,7 @@ export function ProductListContent() {
             </div>
 
             {/* Filters */}
-            <div className="border border-slate-200 dark:border-slate-700 rounded-lg p-4 space-y-4">
+            <div className="border border-slate-200 dark:border-border rounded-lg p-4 space-y-4">
                 {/* Search */}
                 <div className="relative">
                     <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-slate-400" />
@@ -129,8 +129,8 @@ export function ProductListContent() {
                         <button
                             onClick={() => setViewType('grid')}
                             className={`p-2 rounded transition-colors ${viewType === 'grid'
-                                    ? 'bg-primary text-white shadow-sm'
-                                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200'
+                                ? 'bg-primary text-white shadow-sm'
+                                : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200'
                                 }`}
                             title="Grid view"
                         >
@@ -139,8 +139,8 @@ export function ProductListContent() {
                         <button
                             onClick={() => setViewType('table')}
                             className={`p-2 rounded transition-colors ${viewType === 'table'
-                                    ? 'bg-primary text-white shadow-sm'
-                                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200'
+                                ? 'bg-primary text-white shadow-sm'
+                                : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200'
                                 }`}
                             title="Table view"
                         >
@@ -155,7 +155,7 @@ export function ProductListContent() {
                 viewType === 'grid' ? (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {[...Array(6)].map((_, i) => (
-                            <div key={i} className="border border-slate-200 dark:border-slate-700 rounded-lg overflow-hidden">
+                            <div key={i} className="border border-slate-200 dark:border-border rounded-lg overflow-hidden">
                                 <Skeleton className="h-40 w-full" />
                                 <div className="p-4 space-y-3">
                                     <Skeleton className="h-4 w-3/4" />
@@ -169,7 +169,7 @@ export function ProductListContent() {
                         ))}
                     </div>
                 ) : (
-                    <div className="border border-slate-200 dark:border-slate-700 rounded-lg overflow-hidden">
+                    <div className="border border-slate-200 dark:border-border rounded-lg overflow-hidden">
                         <table className="w-full text-sm">
                             <thead>
                                 <tr className="border-b border-slate-200 dark:border-border bg-slate-50 dark:bg-muted">
@@ -215,7 +215,7 @@ export function ProductListContent() {
                         <Link
                             key={product.id}
                             href={`/artisan/products/${product.id}`}
-                            className="border border-slate-200 dark:border-slate-700 rounded-lg overflow-hidden hover:border-primary dark:hover:border-primary transition-colors"
+                            className="border border-slate-200 dark:border-border rounded-lg overflow-hidden hover:border-primary dark:hover:border-primary transition-colors"
                         >
                             {product.imageUrl ? (
                                 <div className="h-40 bg-slate-200 dark:bg-muted">
@@ -257,10 +257,10 @@ export function ProductListContent() {
                     ))}
                 </div>
             ) : (
-                <div className="overflow-x-auto border border-slate-200 dark:border-slate-700 rounded-lg">
+                <div className="overflow-x-auto border border-slate-200 dark:border-border rounded-lg">
                     <table className="w-full text-sm">
                         <thead>
-                            <tr className="border-b border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800">
+                            <tr className="border-b border-slate-200 dark:border-border bg-slate-50 dark:bg-muted">
                                 <th className="px-4 py-3 text-left font-semibold text-slate-900 dark:text-white">
                                     Product
                                 </th>
@@ -282,7 +282,7 @@ export function ProductListContent() {
                             {filteredProducts.map((product, idx) => (
                                 <tr
                                     key={product.id}
-                                    className={`border-b border-slate-200 dark:border-slate-700 ${idx % 2 === 0
+                                    className={`border-b border-slate-200 dark:border-border ${idx % 2 === 0
                                         ? 'bg-white dark:bg-card'
                                         : 'bg-slate-50 dark:bg-muted'
                                         }`}
