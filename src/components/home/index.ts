@@ -1,0 +1,10 @@
+export { Navbar } from "./navbar";
+export { NavbarWrapper } from "./navbar-wrapper";
+export { HeroSection } from "./hero-section";
+export { HowItWorks } from "./how-it-works";
+export { ArtisanBenefits } from "./artisan-benefits";
+export { ClientBenefits } from "./client-benefits";
+export { Testimonials } from "./testimonials";
+export { StatsSection } from "./stats-section";
+export { FinalCTASection } from "./final-cta";
+export { Footer } from "./footer";
