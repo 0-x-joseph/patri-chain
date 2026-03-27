@@ -7,7 +7,7 @@ export const COLORS = {
     light: {
         // Primary and UI Elements
         primary: '#166534', // Green
-        primaryHover: '#14532D', // Darker Green
+        primaryHover: '#15803D', // Darker Green
         background: '#FFFFFF',
         foreground: '#171717', // Black
         card: '#FFFFFF',

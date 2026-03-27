@@ -1,0 +1,100 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id                    String                 @id @default(cuid())
+  email                 String                 @unique
+  fullName              String
+  phoneNumber           String
+  password              String
+  emailVerified         DateTime?
+  phoneVerified         DateTime?
+  onboardingCompleted   Boolean                @default(false)
+  artisanStatus         String                 @default("pending") // pending, approved, rejected
+  createdAt             DateTime               @default(now())
+  updatedAt             DateTime               @updatedAt
+  emailVerificationToken EmailVerificationToken?
+  artisanProfile        ArtisanProfile?
+  products              Product[]
+
+  @@index([email])
+}
+
+model EmailVerificationToken {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  token     String   @unique
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+  user      User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String?  @unique
+
+  @@index([token])
+  @@index([userId])
+}
+
+model ArtisanProfile {
+  id                   String   @id @default(cuid())
+  userId               String   @unique
+  user                 User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  profilePhotoUrl      String?
+  dateOfBirth          String?
+  gender               String?
+  artisanLicense       String?
+  craftCategory        String?
+  yearsExperience      Int?
+  workshopLocation     String?
+  bio                  String?
+  portfolioPhotos      String[] // JSON array of URLs
+  socialLinks          String?  // JSON object: { facebook, instagram, website }
+  governmentIdUrl      String?
+  artisanCardUrl       String?
+  workshopPhotoUrl     String?
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+
+  @@index([userId])
+}
+
+model Product {
+  id                   String                  @id @default(cuid())
+  name                 String
+  description          String?
+  imageUrl             String?
+  artisanId            String
+  artisan              User                    @relation(fields: [artisanId], references: [id], onDelete: Cascade)
+  status               String                  @default("pending") // pending, verified, rejected
+  verificationCount    Int                     @default(0)
+  blockchainHash       String?
+  blockchainStatus     String                  @default("pending") // pending, confirmed
+  createdAt            DateTime                @default(now())
+  updatedAt            DateTime                @updatedAt
+  verifications        ProductVerification[]
+
+  @@index([artisanId])
+  @@index([status])
+  @@index([blockchainStatus])
+}
+
+model ProductVerification {
+  id           String   @id @default(cuid())
+  productId    String
+  product      Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  scanHash     String
+  timestamp    DateTime @default(now())
+  blockchainTx String?
+  status       String   @default("pending") // pending, confirmed
+
+  @@index([productId])
+  @@index([blockchainTx])
+}
+
