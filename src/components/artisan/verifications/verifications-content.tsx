@@ -126,7 +126,7 @@ export function VerificationsPageContent() {
                                 <div className="flex items-start gap-3 flex-1 min-w-0">
                                     <div className="mt-0.5 flex-shrink-0">{getStatusIcon(verification.status)}</div>
                                     <div className="flex-1 min-w-0">
-                                        <h3 className="font-semibold text-slate-900 dark:text-slate-50 truncate">
+                                        <h3 className="font-semibold text-slate-900 dark:text-foreground truncate">
                                             {verification.productName}
                                         </h3>
                                         <div className="mt-2 space-y-1 text-xs text-slate-600 dark:text-slate-400">
@@ -145,7 +145,7 @@ export function VerificationsPageContent() {
                                             {verification.blockchainTx && (
                                                 <p>
                                                     <span className="font-medium text-slate-700 dark:text-slate-300">TX:</span>
-                                                    <code className="ml-2 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded font-mono text-xs">
+                                                    <code className="ml-2 bg-slate-100 dark:bg-muted px-2 py-0.5 rounded font-mono text-xs">
                                                         {verification.blockchainTx.substring(0, 12)}...
                                                     </code>
                                                 </p>
@@ -161,7 +161,7 @@ export function VerificationsPageContent() {
                     ))}
                 </div>
             ) : (
-                <div className="text-center py-12 border border-slate-200 dark:border-slate-700 rounded-lg bg-slate-50 dark:bg-slate-800/50">
+                <div className="text-center py-12 border border-slate-200 dark:border-border rounded-lg bg-slate-50 dark:bg-muted/50">
                     <Clock className="w-12 h-12 text-slate-300 dark:text-slate-600 mx-auto mb-3" />
                     <p className="text-slate-900 dark:text-slate-200 font-medium">No verifications found</p>
                     <p className="text-slate-600 dark:text-slate-400 text-sm mt-1">
@@ -177,7 +177,7 @@ export function VerificationsPageContent() {
                         <p className="text-xs font-semibold uppercase tracking-wide text-slate-600 dark:text-slate-400 mb-2">
                             Total Verifications
                         </p>
-                        <p className="text-2xl font-bold text-slate-900 dark:text-slate-50">
+                        <p className="text-2xl font-bold text-slate-900 dark:text-foreground">
                             {verifications.length}
                         </p>
                     </div>

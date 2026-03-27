@@ -23,7 +23,7 @@ export function WelcomeHeader({ user }: WelcomeHeaderProps) {
         <div className="pb-4">
             <div className="flex items-start justify-between">
                 <div>
-                    <h1 className="text-3xl font-bold text-slate-900 dark:text-slate-50">
+                    <h1 className="text-3xl font-bold text-slate-900 dark:text-foreground">
                         Welcome back
                     </h1>
                     <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">

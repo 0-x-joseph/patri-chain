@@ -18,7 +18,7 @@ export function LoginPageContent() {
 
     if (isComplete) {
         return (
-            <div className="min-h-screen flex items-center justify-center p-4 bg-white dark:bg-slate-950">
+            <div className="min-h-screen flex items-center justify-center p-4 bg-white dark:bg-background">
                 <div className="w-full max-w-sm">
                     {/* Back Button */}
                     <div className="mb-6">
@@ -31,13 +31,13 @@ export function LoginPageContent() {
                     </div>
 
                     {/* Main Container */}
-                    <div className="border border-slate-200 dark:border-slate-700 rounded-lg overflow-hidden shadow-sm">
+                    <div className="border border-slate-200 dark:border-border rounded-lg overflow-hidden shadow-sm">
                         <div className="px-8 py-12 text-center space-y-4">
                             <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-green-100 dark:bg-green-900 mb-2">
                                 <CheckCircle2 className="h-6 w-6 text-green-600 dark:text-green-400" />
                             </div>
                             <div>
-                                <h2 className="text-lg font-bold text-slate-900 dark:text-slate-50">Welcome back</h2>
+                                <h2 className="text-lg font-bold text-slate-900 dark:text-foreground">Welcome back</h2>
                                 <p className="text-sm text-slate-600 dark:text-slate-400 mt-2">Redirecting to dashboard...</p>
                             </div>
                         </div>
@@ -48,7 +48,7 @@ export function LoginPageContent() {
     }
 
     return (
-        <div className="min-h-screen flex items-center justify-center p-4 bg-white dark:bg-slate-950">
+        <div className="min-h-screen flex items-center justify-center p-4 bg-white dark:bg-background">
             <div className="w-full max-w-sm">
                 {/* Back Button */}
                 <div className="mb-6">
@@ -63,8 +63,8 @@ export function LoginPageContent() {
                 {/* Main Container */}
                 <div className="border border-slate-200 dark:border-slate-700 rounded-lg overflow-hidden shadow-sm">
                     {/* Header Section */}
-                    <div className="px-8 py-6 border-b border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50">
-                        <h1 className="text-xl font-bold text-slate-900 dark:text-slate-50">
+                    <div className="px-8 py-6 border-b border-slate-200 dark:border-border bg-slate-50 dark:bg-muted/50">
+                        <h1 className="text-xl font-bold text-slate-900 dark:text-foreground">
                             Sign in
                         </h1>
                         <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
@@ -77,7 +77,7 @@ export function LoginPageContent() {
                         <LoginForm onSuccess={handleLoginSuccess} />
 
                         {/* Sign Up Link */}
-                        <div className="mt-6 pt-6 border-t border-slate-200 dark:border-slate-700 text-center">
+                        <div className="mt-6 pt-6 border-t border-slate-200 dark:border-border text-center">
                             <p className="text-sm text-slate-600 dark:text-slate-400">
                                 Don't have an account?{' '}
                                 <Link href="/register" className="text-primary hover:text-primary/90 font-medium transition-colors">

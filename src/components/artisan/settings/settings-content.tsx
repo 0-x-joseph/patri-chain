@@ -154,7 +154,7 @@ export function SettingsPageContent() {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 {/* Profile Settings - Wide */}
                 <div className="lg:col-span-2 border border-slate-200 dark:border-slate-700 rounded-lg p-8">
-                    <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-50 mb-8">Profile Information</h2>
+                    <h2 className="text-2xl font-bold text-slate-900 dark:text-foreground mb-8">Profile Information</h2>
                     <div className="space-y-6">
                         <div>
                             <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">
@@ -214,13 +214,13 @@ export function SettingsPageContent() {
 
                 {/* Security Settings - Sidebar */}
                 <div className="border border-slate-200 dark:border-slate-700 rounded-lg p-8">
-                    <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-50 mb-8">Security</h2>
+                    <h2 className="text-2xl font-bold text-slate-900 dark:text-foreground mb-8">Security</h2>
 
                     {!showPasswordForm ? (
                         <Button
                             onClick={() => setShowPasswordForm(true)}
                             variant="outline"
-                            className="w-full border-slate-300 dark:border-slate-600 text-slate-900 dark:text-slate-100 hover:bg-slate-50 dark:hover:bg-slate-800 py-6 text-base"
+                            className="w-full border-slate-300 dark:border-border text-slate-900 dark:text-foreground hover:bg-slate-50 dark:hover:bg-muted py-6 text-base"
                         >
                             Change Password
                         </Button>
@@ -282,7 +282,7 @@ export function SettingsPageContent() {
                                         setPasswordForm({ currentPassword: '', newPassword: '', confirmPassword: '' });
                                     }}
                                     variant="outline"
-                                    className="w-full border-slate-300 dark:border-slate-600 text-slate-900 dark:text-slate-100 hover:bg-slate-50 dark:hover:bg-slate-800 py-5"
+                                    className="w-full border-slate-300 dark:border-border text-slate-900 dark:text-foreground hover:bg-slate-50 dark:hover:bg-muted py-5"
                                 >
                                     Cancel
                                 </Button>

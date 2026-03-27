@@ -36,7 +36,7 @@ export function ProductVerificationContent({ productId }: { productId: string })
     useEffect(() => {
         const fetchProductDetails = async () => {
             try {
-                const response = await fetch(`/api/artisan/products/${productId}`);
+                const response = await fetch(`/api/public/products/${productId}`);
                 if (!response.ok) {
                     throw new Error('Product not found');
                 }
@@ -216,7 +216,7 @@ export function ProductVerificationContent({ productId }: { productId: string })
                         </div>
 
                         {/* Registration Date */}
-                        <div className="pt-4 border-t border-slate-200 dark:border-slate-700">
+                        <div className="pt-4 border-t border-slate-200 dark:border-border">
                             <p className="text-sm text-slate-600 dark:text-slate-400">
                                 Registered on Patrimoine Platform
                             </p>
@@ -226,7 +226,7 @@ export function ProductVerificationContent({ productId }: { productId: string })
                         </div>
 
                         {/* Verification Count */}
-                        <div className="bg-slate-100 dark:bg-slate-800 rounded-lg p-4">
+                        <div className="bg-slate-100 dark:bg-muted rounded-lg p-4">
                             <p className="text-sm text-slate-600 dark:text-slate-400">
                                 Times Verified
                             </p>
@@ -250,7 +250,7 @@ export function ProductVerificationContent({ productId }: { productId: string })
                             {verifications.slice(0, 5).map((verification) => (
                                 <div
                                     key={verification.id}
-                                    className="flex items-start gap-3 p-3 bg-slate-50 dark:bg-slate-800 rounded"
+                                    className="flex items-start gap-3 p-3 bg-slate-50 dark:bg-muted rounded"
                                 >
                                     {getStatusIcon(verification.status)}
                                     <div className="flex-1">
@@ -287,7 +287,7 @@ export function ProductVerificationContent({ productId }: { productId: string })
                             </div>
                             <div>
                                 <p className="text-sm text-slate-600 dark:text-slate-400">Transaction Hash</p>
-                                <code className="block text-xs text-slate-900 dark:text-white bg-slate-100 dark:bg-slate-800 p-2 rounded mt-2 break-all font-mono">
+                                <code className="block text-xs text-slate-900 dark:text-white bg-slate-100 dark:bg-muted p-2 rounded mt-2 break-all font-mono">
                                     {product.blockchainHash}
                                 </code>
                             </div>

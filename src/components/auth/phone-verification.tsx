@@ -84,7 +84,7 @@ export function PhoneVerification({
             <div className="text-center py-6 space-y-3">
                 <CheckCircle2 className="h-12 w-12 text-green-600 mx-auto" />
                 <div>
-                    <h3 className="text-base font-semibold text-slate-900 dark:text-slate-100">Phone Verified</h3>
+                    <h3 className="text-base font-semibold text-slate-900 dark:text-foreground">Phone Verified</h3>
                     <p className="text-xs text-slate-600 dark:text-slate-400 mt-1">
                         Your phone number has been verified
                     </p>
@@ -112,7 +112,7 @@ export function PhoneVerification({
                     value={code}
                     onChange={(e) => handleCodeChange(e.target.value)}
                     maxLength={6}
-                    className="w-full px-3 py-2 text-center text-2xl tracking-[0.3em] font-mono font-semibold border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 rounded focus:outline-none focus:border-primary"
+                    className="w-full px-3 py-2 text-center text-2xl tracking-[0.3em] font-mono font-semibold border border-slate-300 dark:border-border bg-white dark:bg-card text-slate-900 dark:text-foreground rounded focus:outline-none focus:border-primary"
                 />
                 <p className="text-xs text-slate-500 dark:text-slate-400">Expires in 10 minutes</p>
             </div>
@@ -144,7 +144,7 @@ export function PhoneVerification({
                 <button
                     onClick={handleResend}
                     disabled={isResending || cooldown > 0}
-                    className="flex-1 py-2 border border-slate-300 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-900/50 disabled:opacity-50 disabled:cursor-not-allowed text-slate-900 dark:text-slate-100 font-medium rounded text-sm transition-colors"
+                    className="flex-1 py-2 border border-slate-300 dark:border-border hover:bg-slate-50 dark:hover:bg-muted/50 disabled:opacity-50 disabled:cursor-not-allowed text-slate-900 dark:text-foreground font-medium rounded text-sm transition-colors"
                 >
                     {cooldown > 0 ? `${cooldown}s` : 'Resend'}
                 </button>

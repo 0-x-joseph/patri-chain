@@ -24,7 +24,7 @@ export function Step1PersonalInfo({ data, onChange }: Step1Props) {
     };
 
     return (
-        <div className="space-y-6 border border-slate-200 dark:border-slate-700 rounded-lg p-6">
+        <div className="space-y-6 border border-slate-200 dark:border-border rounded-lg p-6">
             <h2 className="text-lg font-semibold text-slate-900 dark:text-white">
                 Personal Information
             </h2>
@@ -36,13 +36,13 @@ export function Step1PersonalInfo({ data, onChange }: Step1Props) {
                 </label>
                 <div className="flex items-center gap-4">
                     {data.profilePhoto && data.profilePhoto instanceof File ? (
-                        <div className="w-20 h-20 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center">
+                        <div className="w-20 h-20 rounded-lg bg-slate-100 dark:bg-muted flex items-center justify-center">
                             <span className="text-xs text-slate-600 dark:text-slate-400">
                                 {data.profilePhoto.name.slice(0, 10)}...
                             </span>
                         </div>
                     ) : (
-                        <div className="w-20 h-20 rounded-lg border-2 border-dashed border-slate-300 dark:border-slate-600 flex items-center justify-center">
+                        <div className="w-20 h-20 rounded-lg border-2 border-dashed border-slate-300 dark:border-border flex items-center justify-center">
                             <span className="text-xs text-slate-400">No image</span>
                         </div>
                     )}
@@ -64,7 +64,7 @@ export function Step1PersonalInfo({ data, onChange }: Step1Props) {
                     type="date"
                     value={data.dateOfBirth || ''}
                     onChange={handleDateChange}
-                    className="w-full px-3 py-2 border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 rounded text-sm"
+                    className="w-full px-3 py-2 border border-slate-300 dark:border-border bg-white dark:bg-card text-slate-900 dark:text-foreground rounded text-sm"
                 />
             </div>
 
@@ -76,7 +76,7 @@ export function Step1PersonalInfo({ data, onChange }: Step1Props) {
                 <select
                     value={data.gender || ''}
                     onChange={handleGenderChange}
-                    className="w-full px-3 py-2 border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 rounded text-sm"
+                    className="w-full px-3 py-2 border border-slate-300 dark:border-border bg-white dark:bg-card text-slate-900 dark:text-foreground rounded text-sm"
                 >
                     <option value="">Select gender</option>
                     <option value="male">Male</option>

@@ -50,7 +50,7 @@ export function WaitingApprovalContent() {
 
     if (loading) {
         return (
-            <div className="min-h-screen bg-white dark:bg-slate-900 flex items-center justify-center px-4">
+            <div className="min-h-screen bg-white dark:bg-card flex items-center justify-center px-4">
                 <div className="text-center">
                     <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
                     <p className="text-slate-600 dark:text-slate-400">Loading...</p>

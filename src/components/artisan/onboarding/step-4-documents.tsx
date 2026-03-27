@@ -9,7 +9,7 @@ interface Step4Props {
 
 function FilePreview({ file, onRemove }: { file: File; onRemove: () => void }) {
     return (
-        <div className="flex items-center justify-between p-3 border border-slate-300 dark:border-slate-600 rounded bg-slate-50 dark:bg-slate-800">
+        <div className="flex items-center justify-between p-3 border border-slate-300 dark:border-border rounded bg-slate-50 dark:bg-muted">
             <span className="text-sm text-slate-700 dark:text-slate-300 truncate">
                 {file.name}
             </span>
@@ -36,7 +36,7 @@ export function Step4Documents({ data, onChange }: Step4Props) {
     };
 
     return (
-        <div className="space-y-6 border border-slate-200 dark:border-slate-700 rounded-lg p-6">
+        <div className="space-y-6 border border-slate-200 dark:border-border rounded-lg p-6">
             <h2 className="text-lg font-semibold text-slate-900 dark:text-white">
                 Verification Documents
             </h2>

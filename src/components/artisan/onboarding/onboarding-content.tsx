@@ -155,7 +155,7 @@ export function OnboardingContent() {
                             key={step}
                             className={`h-1 flex-1 rounded-full transition-colors ${step <= currentStep
                                     ? 'bg-primary'
-                                    : 'bg-slate-200 dark:bg-slate-700'
+                                    : 'bg-slate-200 dark:bg-border'
                                 }`}
                         />
                     ))}

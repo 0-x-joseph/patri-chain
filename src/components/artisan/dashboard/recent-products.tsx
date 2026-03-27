@@ -18,13 +18,13 @@ interface RecentProductsProps {
 export function RecentProducts({ products }: RecentProductsProps) {
     if (products === null) {
         return (
-            <div className="border border-slate-200 dark:border-slate-700 rounded-lg p-6">
-                <h2 className="text-lg font-semibold text-slate-900 dark:text-slate-50 mb-6">
+            <div className="border border-slate-200 dark:border-border rounded-lg p-6">
+                <h2 className="text-lg font-semibold text-slate-900 dark:text-foreground mb-6">
                     Recent Products
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {[...Array(3)].map((_, i) => (
-                        <div key={i} className="border border-slate-200 dark:border-slate-700 rounded-lg overflow-hidden">
+                        <div key={i} className="border border-slate-200 dark:border-border rounded-lg overflow-hidden">
                             <Skeleton className="h-40 w-full" />
                             <div className="p-4 space-y-4">
                                 <Skeleton className="h-4 w-3/4" />
@@ -43,7 +43,7 @@ export function RecentProducts({ products }: RecentProductsProps) {
 
     return (
         <div className="border border-slate-200 dark:border-slate-700 rounded-lg p-6">
-            <h2 className="text-lg font-semibold text-slate-900 dark:text-slate-50 mb-6">
+            <h2 className="text-lg font-semibold text-slate-900 dark:text-foreground mb-6">
                 Recent Products
             </h2>
 
@@ -56,10 +56,10 @@ export function RecentProducts({ products }: RecentProductsProps) {
                     {products.map((product) => (
                         <div
                             key={product.id}
-                            className="border border-slate-200 dark:border-slate-700 rounded-lg overflow-hidden hover:shadow-sm transition-shadow"
+                            className="border border-slate-200 dark:border-border rounded-lg overflow-hidden hover:shadow-sm transition-shadow"
                         >
                             {product.imageUrl ? (
-                                <div className="h-40 bg-slate-200 dark:bg-slate-800 overflow-hidden">
+                                <div className="h-40 bg-slate-200 dark:bg-muted overflow-hidden">
                                     <img
                                         src={product.imageUrl}
                                         alt={product.name}
@@ -67,13 +67,13 @@ export function RecentProducts({ products }: RecentProductsProps) {
                                     />
                                 </div>
                             ) : (
-                                <div className="h-40 bg-slate-100 dark:bg-slate-800 flex items-center justify-center">
+                                <div className="h-40 bg-slate-100 dark:bg-muted flex items-center justify-center">
                                     <span className="text-sm text-slate-400">No image</span>
                                 </div>
                             )}
 
                             <div className="p-4">
-                                <h3 className="font-semibold text-slate-900 dark:text-slate-50 mb-3 line-clamp-2">
+                                <h3 className="font-semibold text-slate-900 dark:text-foreground mb-3 line-clamp-2">
                                     {product.name}
                                 </h3>
 
@@ -82,7 +82,7 @@ export function RecentProducts({ products }: RecentProductsProps) {
                                         <span className="text-xs font-medium uppercase tracking-wide text-slate-600 dark:text-slate-400">
                                             Verifications
                                         </span>
-                                        <span className="font-bold text-slate-900 dark:text-slate-50">
+                                        <span className="font-bold text-slate-900 dark:text-foreground">
                                             {product.verificationCount}
                                         </span>
                                     </div>
@@ -102,7 +102,7 @@ export function RecentProducts({ products }: RecentProductsProps) {
                                         <span
                                             className={`text-xs font-semibold px-2 py-1 rounded border transition-colors ${product.blockchainStatus === 'confirmed'
                                                     ? 'bg-blue-100 dark:bg-blue-900 border-blue-300 dark:border-blue-700 text-blue-700 dark:text-blue-300'
-                                                    : 'bg-slate-100 dark:bg-slate-700 border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300'
+                                                    : 'bg-slate-100 dark:bg-muted border-slate-300 dark:border-border text-slate-700 dark:text-slate-300'
                                                 }`}
                                         >
                                             {product.blockchainStatus.charAt(0).toUpperCase() +

@@ -19,12 +19,12 @@ export function ArtisanSidebar() {
 
     return (
         <nav
-            className={`fixed left-0 top-0 h-screen flex flex-col flex-shrink-0 transition-all duration-300 z-40 ${isCollapsed ? 'w-20' : 'w-64'} bg-white dark:bg-slate-950 border-r border-slate-200 dark:border-slate-700`}
+            className={`fixed left-0 top-0 h-screen flex flex-col flex-shrink-0 transition-all duration-300 z-40 ${isCollapsed ? 'w-20' : 'w-64'} bg-white dark:bg-background border-r border-slate-200 dark:border-border`}
         >
             {/* Header with Logo and Toggle */}
-            <div className="px-4 py-6 border-b border-slate-200 dark:border-slate-700 flex items-center justify-between flex-shrink-0">
+            <div className="px-4 py-6 border-b border-slate-200 dark:border-border flex items-center justify-between flex-shrink-0">
                 {!isCollapsed && (
-                    <h2 className="text-sm font-bold uppercase tracking-wide text-slate-900 dark:text-slate-50">
+                    <h2 className="text-sm font-bold uppercase tracking-wide text-slate-900 dark:text-foreground">
                         PatriChain
                     </h2>
                 )}
@@ -64,7 +64,7 @@ export function ArtisanSidebar() {
             </div>
 
             {/* Bottom Section with User Profile - Always at bottom, not scrollable */}
-            <div className="border-t border-slate-200 dark:border-slate-700 p-3 flex-shrink-0">
+            <div className="border-t border-slate-200 dark:border-border p-3 flex-shrink-0">
                 {isCollapsed ? (
                     // Avatar only in collapsed state
                     <div className="flex justify-center">

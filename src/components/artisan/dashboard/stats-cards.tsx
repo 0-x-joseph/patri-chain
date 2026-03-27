@@ -40,12 +40,12 @@ export function StatsCards({ stats }: StatsCardsProps) {
                     {item.isStatus ? (
                         <div className="flex items-center gap-2">
                             <div className="w-2 h-2 bg-green-600 rounded-full"></div>
-                            <p className="text-2xl font-bold text-slate-900 dark:text-slate-50">
+                            <p className="text-2xl font-bold text-slate-900 dark:text-foreground">
                                 {item.value}
                             </p>
                         </div>
                     ) : (
-                        <p className="text-3xl font-bold text-slate-900 dark:text-slate-50">
+                        <p className="text-3xl font-bold text-slate-900 dark:text-foreground">
                             {item.value}
                         </p>
                     )}

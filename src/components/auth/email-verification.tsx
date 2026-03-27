@@ -51,7 +51,7 @@ export function EmailVerification({ email, onVerified }: EmailVerificationProps)
             <div className="text-center py-6 space-y-3">
                 <CheckCircle2 className="h-12 w-12 text-green-600 mx-auto" />
                 <div>
-                    <h3 className="text-base font-semibold text-slate-900 dark:text-slate-100">Email Verified</h3>
+                    <h3 className="text-base font-semibold text-slate-900 dark:text-foreground">Email Verified</h3>
                     <p className="text-xs text-slate-600 dark:text-slate-400 mt-1">
                         Your email has been verified
                     </p>
@@ -89,7 +89,7 @@ export function EmailVerification({ email, onVerified }: EmailVerificationProps)
                 <button
                     onClick={handleResend}
                     disabled={isResending || cooldown > 0}
-                    className="flex-1 py-2 border border-slate-300 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-900/50 disabled:opacity-50 disabled:cursor-not-allowed text-slate-900 dark:text-slate-100 font-medium rounded text-sm transition-colors"
+                    className="flex-1 py-2 border border-slate-300 dark:border-border hover:bg-slate-50 dark:hover:bg-muted/50 disabled:opacity-50 disabled:cursor-not-allowed text-slate-900 dark:text-foreground font-medium rounded text-sm transition-colors"
                 >
                     {cooldown > 0 ? `${cooldown}s` : 'Resend'}
                 </button>

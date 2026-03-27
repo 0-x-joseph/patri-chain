@@ -134,7 +134,7 @@ export function AddProductContent() {
     if (isComplete) {
         return (
             <div className="max-w-2xl mx-auto px-6 py-12">
-                <div className="border border-slate-200 dark:border-slate-700 rounded-lg p-8 text-center space-y-6">
+                <div className="border border-slate-200 dark:border-border rounded-lg p-8 text-center space-y-6">
                     <CheckCircle2 className="h-12 w-12 text-green-600 mx-auto" />
                     <div>
                         <h2 className="text-2xl font-semibold text-slate-900 dark:text-white">
@@ -146,7 +146,7 @@ export function AddProductContent() {
                     </div>
 
                     {qrCode && (
-                        <div className="bg-slate-50 dark:bg-slate-800 p-6 rounded">
+                        <div className="bg-slate-50 dark:bg-muted p-6 rounded">
                             <p className="text-sm text-slate-600 dark:text-slate-400 mb-3">
                                 Your QR Code:
                             </p>
@@ -166,7 +166,7 @@ export function AddProductContent() {
                         </a>
                         <a
                             href="/artisan/products/new"
-                            className="px-4 py-2 border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 rounded hover:bg-slate-50 dark:hover:bg-slate-800 text-sm transition-colors"
+                            className="px-4 py-2 border border-slate-300 dark:border-border text-slate-700 dark:text-slate-300 rounded hover:bg-slate-50 dark:hover:bg-muted text-sm transition-colors"
                         >
                             Add Another
                         </a>
@@ -197,7 +197,7 @@ export function AddProductContent() {
                             type="text"
                             {...register('name')}
                             placeholder="E.g., Handwoven Moroccan Carpet"
-                            className="w-full px-3 py-2 border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 rounded text-sm"
+                            className="w-full px-3 py-2 border border-slate-300 dark:border-border bg-white dark:bg-card text-slate-900 dark:text-foreground rounded text-sm"
                         />
                         {errors.name && (
                             <p className="text-xs text-red-600 dark:text-red-400 mt-1">
@@ -239,7 +239,7 @@ export function AddProductContent() {
                             rows={4}
                             maxLength={500}
                             placeholder="Describe your product, its features, and craftsmanship"
-                            className="w-full px-3 py-2 border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 rounded text-sm resize-none"
+                            className="w-full px-3 py-2 border border-slate-300 dark:border-border bg-white dark:bg-card text-slate-900 dark:text-foreground rounded text-sm resize-none"
                         />
                         <div className="flex justify-between mt-1">
                             {errors.description && (
@@ -263,7 +263,7 @@ export function AddProductContent() {
                             {...register('price')}
                             placeholder="1000"
                             step="0.01"
-                            className="w-full px-3 py-2 border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 rounded text-sm"
+                            className="w-full px-3 py-2 border border-slate-300 dark:border-border bg-white dark:bg-card text-slate-900 dark:text-foreground rounded text-sm"
                         />
                         {errors.price && (
                             <p className="text-xs text-red-600 dark:text-red-400 mt-1">
@@ -281,7 +281,7 @@ export function AddProductContent() {
                             type="text"
                             {...register('materials')}
                             placeholder="E.g., Wool, Silk, Natural Dyes"
-                            className="w-full px-3 py-2 border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 rounded text-sm"
+                            className="w-full px-3 py-2 border border-slate-300 dark:border-border bg-white dark:bg-card text-slate-900 dark:text-foreground rounded text-sm"
                         />
                     </div>
 
@@ -294,7 +294,7 @@ export function AddProductContent() {
                             type="text"
                             {...register('dimensions')}
                             placeholder="E.g., 200cm x 150cm"
-                            className="w-full px-3 py-2 border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 rounded text-sm"
+                            className="w-full px-3 py-2 border border-slate-300 dark:border-border bg-white dark:bg-card text-slate-900 dark:text-foreground rounded text-sm"
                         />
                     </div>
 
@@ -340,7 +340,7 @@ export function AddProductContent() {
                         </label>
                         {primaryPhoto ? (
                             <div className="flex items-center gap-4">
-                                <div className="w-20 h-20 rounded border border-slate-300 dark:border-slate-600 bg-slate-100 dark:bg-slate-800 flex items-center justify-center">
+                                <div className="w-20 h-20 rounded border border-slate-300 dark:border-border bg-slate-100 dark:bg-muted flex items-center justify-center">
                                     <span className="text-xs text-slate-600 dark:text-slate-400 text-center px-2">
                                         {primaryPhoto.name.slice(0, 15)}...
                                     </span>
@@ -380,7 +380,7 @@ export function AddProductContent() {
                             <div className="grid grid-cols-2 gap-3 mt-3">
                                 {additionalPhotos.map((photo, idx) => (
                                     <div key={idx} className="relative">
-                                        <div className="w-full h-24 rounded border border-slate-300 dark:border-slate-600 bg-slate-100 dark:bg-slate-800 flex items-center justify-center">
+                                        <div className="w-full h-24 rounded border border-slate-300 dark:border-border bg-slate-100 dark:bg-muted flex items-center justify-center">
                                             <span className="text-xs text-slate-600 dark:text-slate-400 text-center px-2">
                                                 {photo.name.slice(0, 15)}...
                                             </span>

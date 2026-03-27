@@ -26,7 +26,7 @@ export function Step2Professional({ data, onChange }: Step2Props) {
     };
 
     return (
-        <div className="space-y-6 border border-slate-200 dark:border-slate-700 rounded-lg p-6">
+        <div className="space-y-6 border border-slate-200 dark:border-border rounded-lg p-6">
             <h2 className="text-lg font-semibold text-slate-900 dark:text-white">
                 Professional Information
             </h2>
@@ -41,7 +41,7 @@ export function Step2Professional({ data, onChange }: Step2Props) {
                     value={data.artisanLicense || ''}
                     onChange={handleInputChange('artisanLicense')}
                     placeholder="License number"
-                    className="w-full px-3 py-2 border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 rounded text-sm"
+                    className="w-full px-3 py-2 border border-slate-300 dark:border-border bg-white dark:bg-card text-slate-900 dark:text-foreground rounded text-sm"
                 />
             </div>
 
@@ -53,7 +53,7 @@ export function Step2Professional({ data, onChange }: Step2Props) {
                 <select
                     value={data.craftCategory || ''}
                     onChange={handleInputChange('craftCategory')}
-                    className="w-full px-3 py-2 border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 rounded text-sm"
+                    className="w-full px-3 py-2 border border-slate-300 dark:border-border bg-white dark:bg-card text-slate-900 dark:text-foreground rounded text-sm"
                 >
                     <option value="">Select a category</option>
                     {CRAFT_CATEGORIES.map((cat) => (
@@ -76,7 +76,7 @@ export function Step2Professional({ data, onChange }: Step2Props) {
                     value={data.yearsExperience || ''}
                     onChange={handleInputChange('yearsExperience')}
                     placeholder="Number of years"
-                    className="w-full px-3 py-2 border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 rounded text-sm"
+                    className="w-full px-3 py-2 border border-slate-300 dark:border-border bg-white dark:bg-card text-slate-900 dark:text-foreground rounded text-sm"
                 />
             </div>
 
@@ -90,7 +90,7 @@ export function Step2Professional({ data, onChange }: Step2Props) {
                     value={data.workshopLocation || ''}
                     onChange={handleInputChange('workshopLocation')}
                     placeholder="City, neighborhood, or full address"
-                    className="w-full px-3 py-2 border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 rounded text-sm"
+                    className="w-full px-3 py-2 border border-slate-300 dark:border-border bg-white dark:bg-card text-slate-900 dark:text-foreground rounded text-sm"
                 />
             </div>
         </div>

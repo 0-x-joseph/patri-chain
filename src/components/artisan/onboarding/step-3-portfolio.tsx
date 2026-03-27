@@ -40,7 +40,7 @@ export function Step3Portfolio({ data, onChange }: Step3Props) {
     };
 
     return (
-        <div className="space-y-6 border border-slate-200 dark:border-slate-700 rounded-lg p-6">
+        <div className="space-y-6 border border-slate-200 dark:border-border rounded-lg p-6">
             <h2 className="text-lg font-semibold text-slate-900 dark:text-white">
                 Portfolio & Social Media
             </h2>
@@ -56,7 +56,7 @@ export function Step3Portfolio({ data, onChange }: Step3Props) {
                     maxLength={500}
                     rows={4}
                     placeholder="Tell us about your craft, inspiration, and journey"
-                    className="w-full px-3 py-2 border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 rounded text-sm resize-none"
+                    className="w-full px-3 py-2 border border-slate-300 dark:border-border bg-white dark:bg-card text-slate-900 dark:text-foreground rounded text-sm resize-none"
                 />
                 <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
                     {(data.bio || '').length} / 500 characters
@@ -79,7 +79,7 @@ export function Step3Portfolio({ data, onChange }: Step3Props) {
                     <div className="grid grid-cols-2 gap-3">
                         {data.portfolioPhotos.map((photo: any, idx: number) => (
                             <div key={idx} className="relative">
-                                <div className="w-full h-24 rounded border border-slate-300 dark:border-slate-600 bg-slate-100 dark:bg-slate-800 flex items-center justify-center">
+                                <div className="w-full h-24 rounded border border-slate-300 dark:border-border bg-slate-100 dark:bg-muted flex items-center justify-center">
                                     <span className="text-xs text-slate-600 dark:text-slate-400 text-center px-2">
                                         {(photo as File).name.slice(0, 15)}...
                                     </span>
@@ -107,7 +107,7 @@ export function Step3Portfolio({ data, onChange }: Step3Props) {
                     value={data.socialLinks?.facebook || ''}
                     onChange={handleSocialChange('facebook')}
                     placeholder="Facebook page or profile URL"
-                    className="w-full px-3 py-2 border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 rounded text-sm"
+                    className="w-full px-3 py-2 border border-slate-300 dark:border-border bg-white dark:bg-card text-slate-900 dark:text-foreground rounded text-sm"
                 />
 
                 <input
@@ -115,7 +115,7 @@ export function Step3Portfolio({ data, onChange }: Step3Props) {
                     value={data.socialLinks?.instagram || ''}
                     onChange={handleSocialChange('instagram')}
                     placeholder="Instagram profile URL"
-                    className="w-full px-3 py-2 border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 rounded text-sm"
+                    className="w-full px-3 py-2 border border-slate-300 dark:border-border bg-white dark:bg-card text-slate-900 dark:text-foreground rounded text-sm"
                 />
 
                 <input
@@ -123,7 +123,7 @@ export function Step3Portfolio({ data, onChange }: Step3Props) {
                     value={data.socialLinks?.website || ''}
                     onChange={handleSocialChange('website')}
                     placeholder="Website or portfolio URL"
-                    className="w-full px-3 py-2 border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 rounded text-sm"
+                    className="w-full px-3 py-2 border border-slate-300 dark:border-border bg-white dark:bg-card text-slate-900 dark:text-foreground rounded text-sm"
                 />
             </div>
         </div>

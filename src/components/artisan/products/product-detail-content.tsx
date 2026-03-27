@@ -179,7 +179,7 @@ export function ProductDetailContent({ productId }: { productId: string }) {
                 <div className="flex flex-col lg:flex-row gap-6 p-6">
                     {/* Image */}
                     {product.imageUrl ? (
-                        <div className="w-full lg:w-48 h-48 rounded bg-slate-200 dark:bg-slate-800">
+                        <div className="w-full lg:w-48 h-48 rounded bg-slate-200 dark:bg-muted">
                             <img
                                 src={product.imageUrl}
                                 alt={product.name}
@@ -187,7 +187,7 @@ export function ProductDetailContent({ productId }: { productId: string }) {
                             />
                         </div>
                     ) : (
-                        <div className="w-full lg:w-48 h-48 rounded bg-slate-100 dark:bg-slate-800 flex items-center justify-center">
+                        <div className="w-full lg:w-48 h-48 rounded bg-slate-100 dark:bg-muted flex items-center justify-center">
                             <span className="text-slate-400">No image</span>
                         </div>
                     )}
@@ -223,7 +223,7 @@ export function ProductDetailContent({ productId }: { productId: string }) {
                             <span
                                 className={`text-xs font-medium px-3 py-1 rounded border ${product.blockchainStatus === 'confirmed'
                                     ? 'bg-blue-100 dark:bg-blue-900 border-blue-300 dark:border-blue-700 text-blue-800 dark:text-blue-200'
-                                    : 'bg-slate-100 dark:bg-slate-700 border-slate-300 dark:border-slate-600 text-slate-800 dark:text-slate-200'
+                                    : 'bg-slate-100 dark:bg-muted border-slate-300 dark:border-border text-slate-800 dark:text-slate-200'
                                     }`}
                             >
                                 Blockchain: {product.blockchainStatus.charAt(0).toUpperCase() + product.blockchainStatus.slice(1)}

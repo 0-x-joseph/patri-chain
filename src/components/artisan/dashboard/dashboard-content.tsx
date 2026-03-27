@@ -80,7 +80,7 @@ export function DashboardContent() {
             <StatsCards stats={isLoading ? null : data?.stats} />
 
             <div className="flex justify-between items-center">
-                <h2 className="text-lg font-semibold text-slate-900 dark:text-slate-50">Your Products</h2>
+                <h2 className="text-lg font-semibold text-slate-900 dark:text-foreground">Your Products</h2>
                 <Button className="bg-primary hover:bg-primary/90 text-white">
                     + Add Product
                 </Button>

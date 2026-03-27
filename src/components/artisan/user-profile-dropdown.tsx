@@ -48,7 +48,7 @@ export function UserProfileDropdown() {
     };
 
     if (isLoading) {
-        return <div className="h-10 w-32 bg-slate-200 dark:bg-slate-700 rounded-lg animate-pulse" />;
+        return <div className="h-10 w-32 bg-slate-200 dark:bg-border rounded-lg animate-pulse" />;
     }
 
     if (!user) {
@@ -73,10 +73,10 @@ export function UserProfileDropdown() {
             </button>
 
             {isOpen && (
-                <div className="absolute bottom-full left-0 mb-2 w-48 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg shadow-xl overflow-hidden z-50">
+                <div className="absolute bottom-full left-0 mb-2 w-48 bg-white dark:bg-card border border-slate-200 dark:border-border rounded-lg shadow-xl overflow-hidden z-50">
                     {/* User Info */}
-                    <div className="px-4 py-3 border-b border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/50">
-                        <p className="text-sm font-medium text-slate-900 dark:text-slate-50 truncate">
+                    <div className="px-4 py-3 border-b border-slate-200 dark:border-border bg-slate-50 dark:bg-muted/50">
+                        <p className="text-sm font-medium text-slate-900 dark:text-foreground truncate">
                             {user.fullName}
                         </p>
                         <p className="text-xs text-slate-600 dark:text-slate-400 truncate">

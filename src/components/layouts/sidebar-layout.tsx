@@ -18,7 +18,7 @@ export function SidebarLayout({ children, sidebar }: SidebarLayoutProps) {
     const sidebarWidth = isCollapsed ? 'calc(5rem + 1px)' : 'calc(16rem + 1px)'; // +1px for border
 
     return (
-        <div className="flex min-h-screen bg-white dark:bg-slate-950" style={{ marginLeft: sidebarWidth } as React.CSSProperties}>
+        <div className="flex min-h-screen bg-white dark:bg-background" style={{ marginLeft: sidebarWidth } as React.CSSProperties}>
             {/* Fixed Sidebar */}
             <div className="hidden lg:block fixed left-0 top-0 h-screen z-40" style={{ width: sidebarWidth } as React.CSSProperties}>
                 {sidebar}
@@ -27,12 +27,12 @@ export function SidebarLayout({ children, sidebar }: SidebarLayoutProps) {
             {/* Main Content */}
             <div className="flex-1 flex flex-col min-h-screen">
                 {/* Breadcrumb Navigation Header */}
-                <header className="bg-white dark:bg-slate-950 px-6 lg:px-8 py-6 flex items-center min-h-[60px]">
+                <header className="bg-white dark:bg-background px-6 lg:px-8 py-6 flex items-center min-h-[60px]">
                     <BreadcrumbNav />
                 </header>
 
                 {/* Content */}
-                <main className="flex-1 px-6 lg:px-8 py-6 lg:py-8 bg-white dark:bg-slate-950">
+                <main className="flex-1 px-6 lg:px-8 py-6 lg:py-8 bg-white dark:bg-background">
                     {children}
                 </main>
             </div>

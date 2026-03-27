@@ -39,7 +39,7 @@ export function RegisterPageContent() {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center p-4 bg-white dark:bg-slate-950">
+        <div className="min-h-screen flex items-center justify-center p-4 bg-white dark:bg-background">
             <div className="w-full max-w-sm">
                 {/* Back Button */}
                 <div className="mb-6">
@@ -51,10 +51,10 @@ export function RegisterPageContent() {
                     </Link>
                 </div>
                 {/* Main Container */}
-                <div className="border border-slate-200 dark:border-slate-700 rounded-lg overflow-hidden shadow-sm">
+                <div className="border border-slate-200 dark:border-border rounded-lg overflow-hidden shadow-sm">
                     {/* Header Section */}
-                    <div className="px-8 py-6 border-b border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50">
-                        <h1 className="text-xl font-bold text-slate-900 dark:text-slate-50">
+                    <div className="px-8 py-6 border-b border-slate-200 dark:border-border bg-slate-50 dark:bg-muted/50">
+                        <h1 className="text-xl font-bold text-slate-900 dark:text-foreground">
                             {getStepTitle(step)}
                         </h1>
                         <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
@@ -68,7 +68,7 @@ export function RegisterPageContent() {
                             {(['form', 'email', 'phone', 'complete'] as const).map((s, idx) => (
                                 <div
                                     key={s}
-                                    className={`h-1.5 flex-1 rounded-full transition-colors ${(['form', 'email', 'phone', 'complete'].indexOf(step) >= idx) ? 'bg-primary' : 'bg-slate-200 dark:bg-slate-700'
+                                    className={`h-1.5 flex-1 rounded-full transition-colors ${(['form', 'email', 'phone', 'complete'].indexOf(step) >= idx) ? 'bg-primary' : 'bg-slate-200 dark:bg-border'
                                         }`}
                                 />
                             ))}
@@ -94,7 +94,7 @@ export function RegisterPageContent() {
                                     <CheckCircle2 className="h-6 w-6 text-green-600 dark:text-green-400" />
                                 </div>
                                 <div>
-                                    <h2 className="text-lg font-bold text-slate-900 dark:text-slate-50">You're all set!</h2>
+                                    <h2 className="text-lg font-bold text-slate-900 dark:text-foreground">You're all set!</h2>
                                     <p className="text-sm text-slate-600 dark:text-slate-400 mt-2">Complete your artisan profile to start listing products</p>
                                 </div>
                                 <Link

@@ -104,7 +104,7 @@ export function ProductListContent() {
                         placeholder="Search products..."
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
-                        className="w-full pl-10 pr-3 py-2.5 border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 rounded-lg text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50"
+                        className="w-full pl-10 pr-3 py-2.5 border border-slate-300 dark:border-border bg-white dark:bg-card text-slate-900 dark:text-foreground rounded-lg text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50"
                     />
                 </div>
 
@@ -114,7 +114,7 @@ export function ProductListContent() {
                     <select
                         value={categoryFilter}
                         onChange={(e) => setCategoryFilter(e.target.value)}
-                        className="flex-1 px-3 py-2.5 border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 rounded-lg text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50"
+                        className="flex-1 px-3 py-2.5 border border-slate-300 dark:border-border bg-white dark:bg-card text-slate-900 dark:text-foreground rounded-lg text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50"
                     >
                         <option value="">All Categories</option>
                         {categories.map((cat) => (
@@ -125,7 +125,7 @@ export function ProductListContent() {
                     </select>
 
                     {/* View Toggle */}
-                    <div className="flex gap-1 border border-slate-200 dark:border-slate-700 rounded-lg p-1 bg-slate-50 dark:bg-slate-800">
+                    <div className="flex gap-1 border border-slate-200 dark:border-border rounded-lg p-1 bg-slate-50 dark:bg-muted">
                         <button
                             onClick={() => setViewType('grid')}
                             className={`p-2 rounded transition-colors ${viewType === 'grid'
@@ -172,7 +172,7 @@ export function ProductListContent() {
                     <div className="border border-slate-200 dark:border-slate-700 rounded-lg overflow-hidden">
                         <table className="w-full text-sm">
                             <thead>
-                                <tr className="border-b border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800">
+                                <tr className="border-b border-slate-200 dark:border-border bg-slate-50 dark:bg-muted">
                                     <th className="px-4 py-3 text-left font-semibold text-slate-900 dark:text-white">Product</th>
                                     <th className="px-4 py-3 text-left font-semibold text-slate-900 dark:text-white">Category</th>
                                     <th className="px-4 py-3 text-left font-semibold text-slate-900 dark:text-white">Status</th>
@@ -181,7 +181,7 @@ export function ProductListContent() {
                             </thead>
                             <tbody>
                                 {[...Array(5)].map((_, i) => (
-                                    <tr key={i} className="border-b border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900">
+                                    <tr key={i} className="border-b border-slate-200 dark:border-border bg-white dark:bg-card">
                                         <td className="px-4 py-3"><Skeleton className="h-4 w-32" /></td>
                                         <td className="px-4 py-3"><Skeleton className="h-4 w-24" /></td>
                                         <td className="px-4 py-3"><Skeleton className="h-6 w-20" /></td>
@@ -193,8 +193,8 @@ export function ProductListContent() {
                     </div>
                 )
             ) : filteredProducts.length === 0 ? (
-                <div className="text-center py-12 border border-slate-200 dark:border-slate-700 rounded-lg bg-slate-50 dark:bg-slate-800/50">
-                    <div className="w-12 h-12 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center mx-auto mb-3">
+                <div className="text-center py-12 border border-slate-200 dark:border-border rounded-lg bg-slate-50 dark:bg-muted/50">
+                    <div className="w-12 h-12 rounded-full bg-slate-200 dark:bg-border flex items-center justify-center mx-auto mb-3">
                         <Search className="w-6 h-6 text-slate-400" />
                     </div>
                     <p className="text-slate-900 dark:text-slate-200 font-medium mb-1">No products found</p>
@@ -218,7 +218,7 @@ export function ProductListContent() {
                             className="border border-slate-200 dark:border-slate-700 rounded-lg overflow-hidden hover:border-primary dark:hover:border-primary transition-colors"
                         >
                             {product.imageUrl ? (
-                                <div className="h-40 bg-slate-200 dark:bg-slate-800">
+                                <div className="h-40 bg-slate-200 dark:bg-muted">
                                     <img
                                         src={product.imageUrl}
                                         alt={product.name}
@@ -226,7 +226,7 @@ export function ProductListContent() {
                                     />
                                 </div>
                             ) : (
-                                <div className="h-40 bg-slate-100 dark:bg-slate-800 flex items-center justify-center">
+                                <div className="h-40 bg-slate-100 dark:bg-muted flex items-center justify-center">
                                     <span className="text-slate-400">No image</span>
                                 </div>
                             )}
@@ -283,8 +283,8 @@ export function ProductListContent() {
                                 <tr
                                     key={product.id}
                                     className={`border-b border-slate-200 dark:border-slate-700 ${idx % 2 === 0
-                                        ? 'bg-white dark:bg-slate-900'
-                                        : 'bg-slate-50 dark:bg-slate-800'
+                                        ? 'bg-white dark:bg-card'
+                                        : 'bg-slate-50 dark:bg-muted'
                                         }`}
                                 >
                                     <td className="px-4 py-3 text-slate-900 dark:text-white">

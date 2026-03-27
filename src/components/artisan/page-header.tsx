@@ -14,7 +14,7 @@ interface PageHeaderProps {
 
 export function PageHeader({ title, description, breadcrumbs }: PageHeaderProps) {
     return (
-        <div className="border-b border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-950 px-6 lg:px-8 py-4">
+        <div className="border-b border-slate-200 dark:border-border bg-white dark:bg-background px-6 lg:px-8 py-4">
             {/* Breadcrumbs */}
             {breadcrumbs && breadcrumbs.length > 0 && (
                 <div className="flex items-center gap-1 text-sm mb-3">
@@ -36,7 +36,7 @@ export function PageHeader({ title, description, breadcrumbs }: PageHeaderProps)
 
             {/* Title & Description */}
             <div>
-                <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50">
+                <h1 className="text-2xl font-bold text-slate-900 dark:text-foreground">
                     {title}
                 </h1>
                 {description && (

@@ -9,7 +9,7 @@ export function ThemeToggle() {
     return (
         <button
             onClick={toggleTheme}
-            className="relative inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-slate-100 dark:bg-slate-800 transition-colors hover:bg-slate-200 dark:hover:bg-slate-700"
+            className="relative inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-slate-100 dark:bg-muted transition-colors hover:bg-slate-200 dark:hover:bg-border"
             title="Toggle theme"
         >
             <Sun className="w-4 h-4 text-amber-600 dark:hidden" />
