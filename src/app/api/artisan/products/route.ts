@@ -27,7 +27,6 @@ export async function GET(request: NextRequest) {
             products: products.map((product: any) => ({
                 id: product.id,
                 name: product.name,
-                category: product.category || 'Uncategorized',
                 imageUrl: product.imageUrl,
                 status: product.status,
                 verificationCount: product.verifications.length,
@@ -55,31 +54,25 @@ export async function POST(request: NextRequest) {
             );
         }
 
-        const formData = await request.formData();
+        // Parse JSON body instead of FormData
+        const body = await request.json();
 
-        // Extract form data
-        const name = formData.get('name') as string;
-        const category = formData.get('category') as string;
-        const description = formData.get('description') as string;
-        const price = parseFloat(formData.get('price') as string);
-        const materials = formData.get('materials') as string | null;
-        const dimensions = formData.get('dimensions') as string | null;
-        const productionDate = formData.get('productionDate') as string | null;
-        const videoUrl = formData.get('videoUrl') as string | null;
+        const {
+            name,
+            description,
+            price,
+            materials,
+            dimensions,
+            productionDate,
+            videoUrl,
+            imageUrl,
+            additionalImages,
+        } = body;
 
         // Validate required fields
-        if (!name || !category || !description) {
+        if (!name || !description || !imageUrl) {
             return NextResponse.json(
-                { error: 'Missing required fields' },
-                { status: 400 }
-            );
-        }
-
-        // Get file names (in production, these would be uploaded to cloud storage)
-        const primaryPhoto = formData.get('primaryPhoto') as File | null;
-        if (!primaryPhoto) {
-            return NextResponse.json(
-                { error: 'Primary photo is required' },
+                { error: 'Missing required fields: name, description, imageUrl' },
                 { status: 400 }
             );
         }
@@ -90,16 +83,16 @@ export async function POST(request: NextRequest) {
                 name,
                 description,
                 artisanId: userId,
-                imageUrl: primaryPhoto.name, // In production, this would be a cloud storage URL
+                imageUrl, // Use the Cloudinary URL directly
                 status: 'pending', // New products start as pending
                 blockchainStatus: 'pending',
             },
         });
 
         // In a production app, you would:
-        // 1. Upload files to cloud storage (S3, Cloudinary, Uploadcare, etc.)
+        // 1. Store additional images metadata in database
         // 2. Generate a unique QR code with product details
-        // 3. Store additional metadata
+        // 3. Store additional metadata (category, price, etc.)
 
         return NextResponse.json({
             success: true,
@@ -109,7 +102,7 @@ export async function POST(request: NextRequest) {
     } catch (error) {
         console.error('Add product API error:', error);
         return NextResponse.json(
-            { error: 'Failed to add product' },
+            { error: error instanceof Error ? error.message : 'Failed to add product' },
             { status: 500 }
         );
     }

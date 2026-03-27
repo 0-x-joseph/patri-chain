@@ -47,7 +47,6 @@ export async function GET(
                 id: product.id,
                 name: product.name,
                 description: product.description,
-                category: product.category || 'Uncategorized',
                 status: product.status,
                 imageUrl: product.imageUrl,
                 verificationCount: product.verifications.length,

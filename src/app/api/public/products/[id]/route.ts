@@ -7,9 +7,11 @@ export async function GET(
 ) {
     try {
         const { id } = await params;
+        // Normalize the ID - trim and convert to lowercase
+        const normalizedId = id.trim().toLowerCase();
 
         const product = await prisma.product.findUnique({
-            where: { id },
+            where: { id: normalizedId },
             include: {
                 verifications: {
                     orderBy: { timestamp: 'desc' },
@@ -31,7 +33,6 @@ export async function GET(
                 id: product.id,
                 name: product.name,
                 description: product.description,
-                category: product.category || 'Uncategorized',
                 status: product.status,
                 imageUrl: product.imageUrl,
                 verificationCount: product.verifications.length,

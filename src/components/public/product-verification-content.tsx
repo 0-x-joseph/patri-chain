@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { format } from 'date-fns';
 import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 import { CheckCircle2, AlertCircle, Clock } from 'lucide-react';
 import Link from 'next/link';
 
@@ -32,6 +33,8 @@ export function ProductVerificationContent({ productId }: { productId: string })
     const [verifications, setVerifications] = useState<Verification[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+    const [isVerifying, setIsVerifying] = useState(false);
+    const [verifySuccess, setVerifySuccess] = useState(false);
 
     useEffect(() => {
         const fetchProductDetails = async () => {
@@ -52,6 +55,53 @@ export function ProductVerificationContent({ productId }: { productId: string })
 
         fetchProductDetails();
     }, [productId]);
+
+    const handleVerifyProduct = async () => {
+        if (!product || product.status !== 'verified') {
+            setError('Only approved products can be verified.');
+            return;
+        }
+
+        setIsVerifying(true);
+        setVerifySuccess(false);
+
+        try {
+            const response = await fetch('/api/public/verifications', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ productId }),
+            });
+
+            if (!response.ok) {
+                const data = await response.json();
+                throw new Error(data.message || 'Failed to verify product');
+            }
+
+            const data = await response.json();
+            setVerifySuccess(true);
+
+            // Update verification count and list
+            if (product) {
+                setProduct({ ...product, verificationCount: product.verificationCount + 1 });
+            }
+
+            // Refetch verifications to show the new one
+            const productResponse = await fetch(`/api/public/products/${productId}`);
+            if (productResponse.ok) {
+                const productData = await productResponse.json();
+                setVerifications(productData.verifications || []);
+            }
+
+            // Reset success message after 3 seconds
+            setTimeout(() => setVerifySuccess(false), 3000);
+        } catch (err) {
+            setError(err instanceof Error ? err.message : 'Failed to verify product');
+        } finally {
+            setIsVerifying(false);
+        }
+    };
 
     const getStatusIcon = (status: string) => {
         switch (status) {
@@ -237,6 +287,33 @@ export function ProductVerificationContent({ productId }: { productId: string })
                                 Scan count helps establish product history and authenticity
                             </p>
                         </div>
+
+                        {/* Verify Button */}
+                        {isVerified && (
+                            <div className="pt-4 space-y-3">
+                                <Button
+                                    onClick={handleVerifyProduct}
+                                    disabled={isVerifying}
+                                    className="w-full bg-primary hover:bg-primary/90 text-white h-10 text-base"
+                                >
+                                    {isVerifying ? (
+                                        <>
+                                            <span className="inline-block w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></span>
+                                            Verifying...
+                                        </>
+                                    ) : (
+                                        '✓ Verify This Product'
+                                    )}
+                                </Button>
+
+                                {/* Success Message */}
+                                {verifySuccess && (
+                                    <div className="p-3 bg-green-100 dark:bg-green-900 border border-green-300 dark:border-green-700 rounded text-sm text-green-800 dark:text-green-200">
+                                        ✓ Product verification recorded successfully!
+                                    </div>
+                                )}
+                            </div>
+                        )}
                     </div>
                 </Card>
 

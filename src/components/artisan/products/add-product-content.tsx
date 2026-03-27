@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { CheckCircle2 } from 'lucide-react';
+import { ImageUpload } from '@/components/shared/image-upload';
 
 const productSchema = z.object({
     name: z.string().min(3, 'Product name must be at least 3 characters'),
@@ -45,8 +46,8 @@ export function AddProductContent() {
         },
     });
 
-    const [primaryPhoto, setPrimaryPhoto] = useState<File | null>(null);
-    const [additionalPhotos, setAdditionalPhotos] = useState<File[]>([]);
+    const [primaryPhotoUrl, setPrimaryPhotoUrl] = useState<string | null>(null);
+    const [additionalPhotoUrls, setAdditionalPhotoUrls] = useState<string[]>([]);
     const [submitError, setSubmitError] = useState<string>('');
     const [isComplete, setIsComplete] = useState(false);
     const [qrCode, setQrCode] = useState<string>('');
@@ -58,60 +59,56 @@ export function AddProductContent() {
         const timer = setTimeout(() => {
             const formData = {
                 ...watch(),
-                primaryPhoto: primaryPhoto ? primaryPhoto.name : null,
-                additionalPhotos: additionalPhotos.map((f) => f.name),
+                primaryPhotoUrl,
+                additionalPhotoUrls,
             };
             localStorage.setItem('addProductDraft', JSON.stringify(formData));
         }, 500);
         return () => clearTimeout(timer);
-    }, [watch, primaryPhoto, additionalPhotos]);
+    }, [watch, primaryPhotoUrl, additionalPhotoUrls]);
 
-    const handlePrimaryPhotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files?.[0];
-        if (file) {
-            setPrimaryPhoto(file);
-        }
+    const handlePrimaryPhotoUpload = (url: string) => {
+        setPrimaryPhotoUrl(url);
     };
 
-    const handleAdditionalPhotosChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const files = e.target.files;
-        if (files) {
-            const newPhotos = Array.from(files).slice(0, 5 - additionalPhotos.length);
-            setAdditionalPhotos((prev) => [...prev, ...newPhotos].slice(0, 5));
+    const handleAdditionalPhotoUpload = (url: string) => {
+        if (additionalPhotoUrls.length < 5) {
+            setAdditionalPhotoUrls([...additionalPhotoUrls, url]);
         }
     };
 
     const removeAdditionalPhoto = (index: number) => {
-        setAdditionalPhotos((prev) => prev.filter((_, i) => i !== index));
+        setAdditionalPhotoUrls((prev) => prev.filter((_, i) => i !== index));
     };
 
     const onSubmit = async (data: ProductFormData) => {
         setSubmitError('');
 
-        if (!primaryPhoto) {
+        if (!primaryPhotoUrl) {
             setSubmitError('Primary photo is required');
             return;
         }
 
         try {
-            const formData = new FormData();
-            formData.append('name', data.name);
-            formData.append('category', data.category);
-            formData.append('description', data.description);
-            formData.append('price', data.price);
-            formData.append('materials', data.materials || '');
-            formData.append('dimensions', data.dimensions || '');
-            formData.append('productionDate', data.productionDate || '');
-            formData.append('videoUrl', data.videoUrl || '');
-            formData.append('primaryPhoto', primaryPhoto);
-
-            additionalPhotos.forEach((photo, idx) => {
-                formData.append(`additionalPhoto${idx}`, photo);
-            });
+            const payload = {
+                name: data.name,
+                category: data.category,
+                description: data.description,
+                price: parseFloat(data.price),
+                materials: data.materials || '',
+                dimensions: data.dimensions || '',
+                productionDate: data.productionDate || '',
+                videoUrl: data.videoUrl || '',
+                imageUrl: primaryPhotoUrl,
+                additionalImages: additionalPhotoUrls,
+            };
 
             const response = await fetch('/api/artisan/products', {
                 method: 'POST',
-                body: formData,
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(payload),
             });
 
             const result = await response.json();
@@ -334,69 +331,47 @@ export function AddProductContent() {
                     <h3 className="font-semibold text-slate-900 dark:text-white">Photos</h3>
 
                     {/* Primary Photo */}
-                    <div>
-                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-                            Primary Photo (Required)
-                        </label>
-                        {primaryPhoto ? (
-                            <div className="flex items-center gap-4">
-                                <div className="w-20 h-20 rounded border border-slate-300 dark:border-border bg-slate-100 dark:bg-muted flex items-center justify-center">
-                                    <span className="text-xs text-slate-600 dark:text-slate-400 text-center px-2">
-                                        {primaryPhoto.name.slice(0, 15)}...
-                                    </span>
-                                </div>
-                                <button
-                                    type="button"
-                                    onClick={() => setPrimaryPhoto(null)}
-                                    className="text-red-600 hover:text-red-700 text-sm"
-                                >
-                                    Change
-                                </button>
-                            </div>
-                        ) : (
-                            <input
-                                type="file"
-                                accept="image/*"
-                                onChange={handlePrimaryPhotoChange}
-                                className="w-full text-sm"
-                            />
-                        )}
-                    </div>
+                    <ImageUpload
+                        label="Primary Photo (Required)"
+                        currentImage={primaryPhotoUrl}
+                        onImageUpload={handlePrimaryPhotoUpload}
+                    />
 
                     {/* Additional Photos */}
-                    <div>
-                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-                            Additional Photos (up to 5)
-                        </label>
-                        <input
-                            type="file"
-                            accept="image/*"
-                            multiple
-                            onChange={handleAdditionalPhotosChange}
-                            disabled={additionalPhotos.length >= 5}
-                            className="w-full text-sm"
-                        />
-                        {additionalPhotos.length > 0 && (
-                            <div className="grid grid-cols-2 gap-3 mt-3">
-                                {additionalPhotos.map((photo, idx) => (
-                                    <div key={idx} className="relative">
-                                        <div className="w-full h-24 rounded border border-slate-300 dark:border-border bg-slate-100 dark:bg-muted flex items-center justify-center">
-                                            <span className="text-xs text-slate-600 dark:text-slate-400 text-center px-2">
-                                                {photo.name.slice(0, 15)}...
-                                            </span>
-                                        </div>
-                                        <button
-                                            type="button"
-                                            onClick={() => removeAdditionalPhoto(idx)}
-                                            className="absolute top-1 right-1 bg-red-600 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs hover:bg-red-700"
-                                        >
-                                            ×
-                                        </button>
+                    {additionalPhotoUrls.length < 5 && (
+                        <div>
+                            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                                Additional Photos (up to 5)
+                            </label>
+                            <ImageUpload
+                                label=""
+                                onImageUpload={handleAdditionalPhotoUpload}
+                            />
+                        </div>
+                    )}
+
+                    {additionalPhotoUrls.length > 0 && (
+                        <div className="grid grid-cols-2 gap-3 mt-3">
+                            {additionalPhotoUrls.map((photoUrl, idx) => (
+                                <div key={idx} className="relative">
+                                    <div className="w-full h-24 rounded border border-slate-300 dark:border-border bg-slate-100 dark:bg-muted flex items-center justify-center overflow-hidden">
+                                        <img
+                                            src={photoUrl}
+                                            alt={`Photo ${idx + 1}`}
+                                            className="w-full h-full object-cover"
+                                        />
                                     </div>
-                                ))}
-                            </div>
-                        )}
-                    </div>
+                                    <button
+                                        type="button"
+                                        onClick={() => removeAdditionalPhoto(idx)}
+                                        className="absolute top-1 right-1 bg-red-600 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs hover:bg-red-700"
+                                    >
+                                        ×
+                                    </button>
+                                </div>
+                            ))}
+                        </div>
+                    )}
                 </div>
 
                 {/* Submit */}
