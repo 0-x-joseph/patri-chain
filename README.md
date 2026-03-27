@@ -160,7 +160,7 @@ export default function DashboardPage() {
 
 ## 🎯 Next Steps
 
-1. Update `src/app/layout.tsx` metadata with your app details
+1. Update `src/app/layout.tsx` metadata with your app detailsgit
 2. Create feature-specific pages in `src/app/`
 3. Build custom components in `src/components/`
 4. Add API routes as needed in `src/app/api/`
