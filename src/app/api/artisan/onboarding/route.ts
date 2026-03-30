@@ -32,11 +32,16 @@ export async function POST(request: NextRequest) {
         let portfolioPhotos: string[] = [];
         let documentFiles: { [key: string]: string } = {};
 
-        // Extract file names (in production, these would be uploaded to cloud storage)
+        // Profile Photo URL uploaded from frontend using ImageUpload component
+        const profilePhotoUrlStr = formData.get('profilePhotoUrl') as string | null;
+
+        // Fallback for old File method
         const profilePhoto = formData.get('profilePhoto') as File | null;
         if (profilePhoto) {
             profilePhotos.push(profilePhoto.name);
         }
+        
+        const finalProfilePhotoUrl = profilePhotoUrlStr || (profilePhotos.length > 0 ? profilePhotos[0] : null);
 
         // Portfolio photos
         let idx = 0;
@@ -62,6 +67,7 @@ export async function POST(request: NextRequest) {
         const artisanProfile = await prisma.artisanProfile.upsert({
             where: { userId },
             update: {
+                profilePhotoUrl: finalProfilePhotoUrl,
                 dateOfBirth,
                 gender,
                 artisanLicense,
@@ -77,6 +83,7 @@ export async function POST(request: NextRequest) {
             },
             create: {
                 userId,
+                profilePhotoUrl: finalProfilePhotoUrl,
                 dateOfBirth,
                 gender,
                 artisanLicense,

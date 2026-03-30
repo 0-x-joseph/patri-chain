@@ -1,6 +1,7 @@
 'use client';
 
 import { ChangeEvent } from 'react';
+import { ImageUpload } from '@/components/shared/image-upload';
 
 interface Step1Props {
     data: any;
@@ -8,11 +9,8 @@ interface Step1Props {
 }
 
 export function Step1PersonalInfo({ data, onChange }: Step1Props) {
-    const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files?.[0];
-        if (file) {
-            onChange({ profilePhoto: file });
-        }
+    const handleProfilePhotoUpload = (url: string) => {
+        onChange({ profilePhotoUrl: url });
     };
 
     const handleDateChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -31,28 +29,11 @@ export function Step1PersonalInfo({ data, onChange }: Step1Props) {
 
             {/* Profile Photo */}
             <div>
-                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-                    Profile Photo
-                </label>
-                <div className="flex items-center gap-4">
-                    {data.profilePhoto && data.profilePhoto instanceof File ? (
-                        <div className="w-20 h-20 rounded-lg bg-slate-100 dark:bg-muted flex items-center justify-center">
-                            <span className="text-xs text-slate-600 dark:text-slate-400">
-                                {data.profilePhoto.name.slice(0, 10)}...
-                            </span>
-                        </div>
-                    ) : (
-                        <div className="w-20 h-20 rounded-lg border-2 border-dashed border-slate-300 dark:border-border flex items-center justify-center">
-                            <span className="text-xs text-slate-400">No image</span>
-                        </div>
-                    )}
-                    <input
-                        type="file"
-                        accept="image/*"
-                        onChange={handleFileChange}
-                        className="flex-1 text-sm"
-                    />
-                </div>
+                <ImageUpload 
+                    label="Profile Photo"
+                    currentImage={data.profilePhotoUrl}
+                    onImageUpload={handleProfilePhotoUpload}
+                />
             </div>
 
             {/* Date of Birth */}

@@ -11,7 +11,8 @@ type Step = 1 | 2 | 3 | 4 | 'complete';
 
 interface OnboardingData {
     // Step 1
-    profilePhoto?: File;
+    profilePhotoUrl?: string;
+    profilePhoto?: File; // Deprecated but kept for backup
     dateOfBirth?: string;
     gender?: string;
 
@@ -97,7 +98,8 @@ export function OnboardingContent() {
             formData.append('socialLinks', JSON.stringify(data.socialLinks || {}));
 
             // Add files
-            if (data.profilePhoto) formData.append('profilePhoto', data.profilePhoto);
+            if (data.profilePhotoUrl) formData.append('profilePhotoUrl', data.profilePhotoUrl);
+            else if (data.profilePhoto) formData.append('profilePhoto', data.profilePhoto);
             if (data.portfolioPhotos) {
                 data.portfolioPhotos.forEach((file, idx) => {
                     formData.append(`portfolioPhoto${idx}`, file);

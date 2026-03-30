@@ -6,6 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { CheckCircle2 } from 'lucide-react';
 import { ImageUpload } from '@/components/shared/image-upload';
+import { QRCodeSVG } from 'qrcode.react';
 
 const productSchema = z.object({
     name: z.string().min(3, 'Product name must be at least 3 characters'),
@@ -50,7 +51,7 @@ export function AddProductContent() {
     const [additionalPhotoUrls, setAdditionalPhotoUrls] = useState<string[]>([]);
     const [submitError, setSubmitError] = useState<string>('');
     const [isComplete, setIsComplete] = useState(false);
-    const [qrCode, setQrCode] = useState<string>('');
+    const [createdProductId, setCreatedProductId] = useState<string>('');
 
     const description = watch('description');
 
@@ -120,8 +121,8 @@ export function AddProductContent() {
             // Clear draft
             localStorage.removeItem('addProductDraft');
 
-            // Set QR code and show success
-            setQrCode(result.qrCode || '');
+            // Set product id and show success
+            setCreatedProductId(result.productId);
             setIsComplete(true);
         } catch (error) {
             setSubmitError(error instanceof Error ? error.message : 'Failed to add product');
@@ -142,15 +143,20 @@ export function AddProductContent() {
                         </p>
                     </div>
 
-                    {qrCode && (
-                        <div className="bg-slate-50 dark:bg-muted p-6 rounded">
-                            <p className="text-sm text-slate-600 dark:text-slate-400 mb-3">
-                                Your QR Code:
+                    {createdProductId && (
+                        <div className="bg-slate-50 dark:bg-muted p-6 rounded flex flex-col items-center">
+                            <p className="text-sm text-slate-600 dark:text-slate-400 mb-4">
+                                Keep this QR code for your product packaging
                             </p>
-                            <div
-                                dangerouslySetInnerHTML={{ __html: qrCode }}
-                                className="flex justify-center"
-                            />
+                            <div className="p-4 bg-white rounded-xl shadow-sm inline-block">
+                                <QRCodeSVG
+                                    value={`${typeof window !== 'undefined' ? window.location.origin : ''}/product/verify/${createdProductId}`}
+                                    size={200}
+                                    level="H"
+                                    includeMargin={true}
+                                />
+                            </div>
+                            <p className="mt-3 text-xs text-slate-500 font-mono">ID: {createdProductId}</p>
                         </div>
                     )}
 

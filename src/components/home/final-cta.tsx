@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 export function FinalCTASection() {
     return (
@@ -12,21 +13,25 @@ export function FinalCTASection() {
                     Join hundreds of artisans who are already protecting their authenticity with Patri-Chain.
                 </p>
                 <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:justify-center sm:gap-4">
-                    <Button
-                        size="lg"
-                        variant="secondary"
-                        className="gap-2"
-                    >
-                        Register as an Artisan
-                        <ArrowRight className="h-4 w-4" />
-                    </Button>
-                    <Button
-                        size="lg"
-                        variant="outline"
-                        className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground/10"
-                    >
-                        Learn More
-                    </Button>
+                    <Link href="/register">
+                        <Button
+                            size="lg"
+                            variant="secondary"
+                            className="w-full sm:w-auto gap-2"
+                        >
+                            Register as an Artisan
+                            <ArrowRight className="h-4 w-4" />
+                        </Button>
+                    </Link>
+                    <Link href="#how-it-works">
+                        <Button
+                            size="lg"
+                            variant="outline"
+                            className="w-full sm:w-auto border-primary-foreground text-primary-foreground hover:bg-primary-foreground/10"
+                        >
+                            Learn More
+                        </Button>
+                    </Link>
                 </div>
             </div>
         </section>

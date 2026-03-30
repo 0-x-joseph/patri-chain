@@ -117,8 +117,8 @@ export function ProductListContent() {
                         className="flex-1 px-3 py-2.5 border border-slate-300 dark:border-border bg-white dark:bg-card text-slate-900 dark:text-foreground rounded-lg text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50"
                     >
                         <option value="">All Categories</option>
-                        {categories.map((cat) => (
-                            <option key={cat} value={cat}>
+                        {categories.map((cat, index) => (
+                            <option key={`category-${index}-${cat}`} value={cat}>
                                 {cat}
                             </option>
                         ))}

@@ -1,34 +1,35 @@
 import { Separator } from "@/components/ui/separator";
 import { Share2, Heart, MessageSquare, Users, Mail } from "lucide-react";
+import Link from "next/link";
 
 const footerLinks = {
     company: [
-        { label: "About", href: "#" },
-        { label: "How It Works", href: "#" },
-        { label: "Blog", href: "#" },
+        { label: "About", href: "/" },
+        { label: "How It Works", href: "/#how-it-works" },
+        { label: "Blog", href: "/" },
     ],
     legal: [
-        { label: "Privacy Policy", href: "#" },
-        { label: "Terms of Service", href: "#" },
-        { label: "Cookie Policy", href: "#" },
+        { label: "Privacy Policy", href: "/" },
+        { label: "Terms of Service", href: "/" },
+        { label: "Cookie Policy", href: "/" },
     ],
     contact: [
-        { label: "Support", href: "#" },
-        { label: "Contact Us", href: "#" },
-        { label: "Partnerships", href: "#" },
+        { label: "Support", href: "/" },
+        { label: "Contact Us", href: "mailto:hello@patrichain.com" },
+        { label: "Partnerships", href: "/" },
     ],
 };
 
 const socialLinks = [
-    { icon: Share2, href: "#", label: "Share" },
-    { icon: Heart, href: "#", label: "Like" },
-    { icon: MessageSquare, href: "#", label: "Message" },
-    { icon: Users, href: "#", label: "Follow" },
+    { icon: Share2, href: "/", label: "Share" },
+    { icon: Heart, href: "/", label: "Like" },
+    { icon: MessageSquare, href: "/", label: "Message" },
+    { icon: Users, href: "/", label: "Follow" },
 ];
 
 export function Footer() {
     return (
-        <footer className="bg-muted/50 border-t border-border">
+        <footer id="contact" className="bg-muted/50 border-t border-border">
             <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
                 {/* Main Footer Content */}
                 <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4 mb-8">
@@ -42,14 +43,14 @@ export function Footer() {
                             {socialLinks.map((link) => {
                                 const Icon = link.icon;
                                 return (
-                                    <a
+                                    <Link
                                         key={link.label}
                                         href={link.href}
                                         className="text-muted-foreground hover:text-primary transition-colors"
                                         aria-label={link.label}
                                     >
                                         <Icon className="h-5 w-5" />
-                                    </a>
+                                    </Link>
                                 );
                             })}
                         </div>
@@ -61,12 +62,12 @@ export function Footer() {
                         <ul className="space-y-2">
                             {footerLinks.company.map((link) => (
                                 <li key={link.label}>
-                                    <a
+                                    <Link
                                         href={link.href}
                                         className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                                     >
                                         {link.label}
-                                    </a>
+                                    </Link>
                                 </li>
                             ))}
                         </ul>
@@ -78,12 +79,12 @@ export function Footer() {
                         <ul className="space-y-2">
                             {footerLinks.legal.map((link) => (
                                 <li key={link.label}>
-                                    <a
+                                    <Link
                                         href={link.href}
                                         className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                                     >
                                         {link.label}
-                                    </a>
+                                    </Link>
                                 </li>
                             ))}
                         </ul>
@@ -95,12 +96,12 @@ export function Footer() {
                         <ul className="space-y-2">
                             {footerLinks.contact.map((link) => (
                                 <li key={link.label}>
-                                    <a
+                                    <Link
                                         href={link.href}
                                         className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                                     >
                                         {link.label}
-                                    </a>
+                                    </Link>
                                 </li>
                             ))}
                         </ul>

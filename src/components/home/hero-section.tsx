@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 export function HeroSection() {
     return (
@@ -27,13 +28,17 @@ export function HeroSection() {
                     </p>
 
                     <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:justify-center sm:gap-4">
-                        <Button size="lg" className="gap-2">
-                            Start Protecting Your Craft
-                            <ArrowRight className="h-4 w-4" />
-                        </Button>
-                        <Button size="lg" variant="outline">
-                            Verify a Product
-                        </Button>
+                        <Link href="/register">
+                            <Button size="lg" className="w-full sm:w-auto gap-2">
+                                Start Protecting Your Craft
+                                <ArrowRight className="h-4 w-4" />
+                            </Button>
+                        </Link>
+                        <Link href="#how-it-works">
+                            <Button size="lg" variant="outline" className="w-full sm:w-auto">
+                                Verify a Product
+                            </Button>
+                        </Link>
                     </div>
                 </div>
             </div>

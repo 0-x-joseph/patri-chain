@@ -4,12 +4,13 @@ import { useState, useEffect } from 'react';
 import { Menu, X, Sun, Moon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useTheme } from '@/components/providers/theme-provider';
+import Link from 'next/link';
 
 const navLinks = [
-    { label: 'How It Works', href: '#how-it-works' },
-    { label: 'Benefits', href: '#benefits' },
-    { label: 'Testimonials', href: '#testimonials' },
-    { label: 'Contact', href: '#contact' },
+    { label: 'How It Works', href: '/#how-it-works' },
+    { label: 'Benefits', href: '/#benefits' },
+    { label: 'Testimonials', href: '/#testimonials' },
+    { label: 'Contact', href: '/#contact' },
 ];
 
 export function Navbar() {
@@ -26,25 +27,25 @@ export function Navbar() {
             <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
                 <div className="flex h-16 items-center justify-between">
                     {/* Logo */}
-                    <div className="flex items-center gap-2">
+                    <Link href="/" className="flex items-center gap-2">
                         <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground font-bold text-sm">
                             P
                         </div>
                         <span className="text-lg font-bold text-foreground hidden sm:inline">
                             Patri-Chain
                         </span>
-                    </div>
+                    </Link>
 
                     {/* Desktop Navigation */}
                     <div className="hidden md:flex items-center gap-8">
                         {navLinks.map((link) => (
-                            <a
+                            <Link
                                 key={link.label}
                                 href={link.href}
                                 className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
                             >
                                 {link.label}
-                            </a>
+                            </Link>
                         ))}
                     </div>
 
@@ -67,12 +68,16 @@ export function Navbar() {
 
                         {/* Auth Buttons - Desktop */}
                         <div className="hidden sm:flex gap-2">
-                            <Button variant="outline" size="sm">
-                                Sign In
-                            </Button>
-                            <Button size="sm">
-                                Register
-                            </Button>
+                            <Link href="/login">
+                                <Button variant="outline" size="sm">
+                                    Sign In
+                                </Button>
+                            </Link>
+                            <Link href="/register">
+                                <Button size="sm">
+                                    Register
+                                </Button>
+                            </Link>
                         </div>
 
                         {/* Mobile Menu Button */}
@@ -95,22 +100,26 @@ export function Navbar() {
                     <div className="border-t border-border bg-muted/50 px-4 py-4 md:hidden">
                         <div className="space-y-3">
                             {navLinks.map((link) => (
-                                <a
+                                <Link
                                     key={link.label}
                                     href={link.href}
                                     className="block text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-2"
                                     onClick={() => setIsOpen(false)}
                                 >
                                     {link.label}
-                                </a>
+                                </Link>
                             ))}
                             <div className="border-t border-border pt-3 space-y-2">
-                                <Button variant="outline" size="sm" className="w-full">
-                                    Sign In
-                                </Button>
-                                <Button size="sm" className="w-full">
-                                    Register
-                                </Button>
+                                <Link href="/login" className="block w-full">
+                                    <Button variant="outline" size="sm" className="w-full">
+                                        Sign In
+                                    </Button>
+                                </Link>
+                                <Link href="/register" className="block w-full">
+                                    <Button size="sm" className="w-full">
+                                        Register
+                                    </Button>
+                                </Link>
                             </div>
                         </div>
                     </div>

@@ -19,6 +19,7 @@ model User {
   emailVerified         DateTime?
   phoneVerified         DateTime?
   onboardingCompleted   Boolean                @default(false)
+  role                  String                 @default("artisan") // artisan, admin
   artisanStatus         String                 @default("pending") // pending, approved, rejected
   createdAt             DateTime               @default(now())
   updatedAt             DateTime               @updatedAt

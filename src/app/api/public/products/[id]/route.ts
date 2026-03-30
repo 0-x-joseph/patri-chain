@@ -16,6 +16,11 @@ export async function GET(
                 verifications: {
                     orderBy: { timestamp: 'desc' },
                 },
+                artisan: {
+                    include: {
+                        artisanProfile: true,
+                    },
+                },
             },
         });
 
@@ -26,8 +31,40 @@ export async function GET(
             );
         }
 
-        // Return public product information regardless of authentication
-        // All products are accessible for public verification
+        // Fetch related products from the same region (workshopLocation)
+        let relatedProducts = [];
+        const workshopLocation = product.artisan?.artisanProfile?.workshopLocation;
+        if (workshopLocation) {
+            relatedProducts = await prisma.product.findMany({
+                where: {
+                    id: { not: product.id },
+                    status: 'verified',
+                    artisan: {
+                        artisanProfile: {
+                            workshopLocation: workshopLocation,
+                        },
+                    },
+                },
+                take: 6,
+                select: {
+                    id: true,
+                    name: true,
+                    imageUrl: true,
+                },
+            });
+        }
+
+        // Add real-time blockchain verification if the product is verified and we have an address configured
+        let onChainData = null;
+        if (product.blockchainStatus === 'confirmed' && process.env.NEXT_PUBLIC_REGISTRY_CONTRACT_ADDRESS) {
+            try {
+                const { getProductFromChain } = await import('@/lib/blockchain');
+                onChainData = await getProductFromChain(product.id);
+            } catch (err) {
+                console.error("Failed to query onChain representation:", err);
+            }
+        }
+
         return NextResponse.json({
             product: {
                 id: product.id,
@@ -38,8 +75,18 @@ export async function GET(
                 verificationCount: product.verifications.length,
                 blockchainStatus: product.blockchainStatus,
                 blockchainHash: product.blockchainHash,
+                onChainRecord: onChainData?.exists ? onChainData : null,
                 createdAt: product.createdAt,
                 artisanId: product.artisanId,
+                artisanProfile: product.artisan?.artisanProfile
+                    ? {
+                        fullName: product.artisan.fullName,
+                        profilePhotoUrl: product.artisan.artisanProfile.profilePhotoUrl,
+                        workshopLocation: product.artisan.artisanProfile.workshopLocation,
+                        craftCategory: product.artisan.artisanProfile.craftCategory,
+                        bio: product.artisan.artisanProfile.bio,
+                    }
+                    : null,
             },
             verifications: product.verifications.map((v: any) => ({
                 id: v.id,
@@ -47,6 +94,7 @@ export async function GET(
                 status: v.status,
                 blockchainTx: v.blockchainTx,
             })),
+            relatedProducts,
         });
     } catch (error) {
         console.error('Get public product details API error:', error);
