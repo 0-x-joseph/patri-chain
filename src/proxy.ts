@@ -1,6 +1,6 @@
 import { type NextMiddleware, NextResponse } from 'next/server';
 
-const middleware: NextMiddleware = (request) => {
+const proxy: NextMiddleware = (request) => {
     const pathname = request.nextUrl.pathname;
 
     // Admin routes protection
@@ -28,9 +28,9 @@ const middleware: NextMiddleware = (request) => {
     return NextResponse.next();
 };
 
-export default middleware;
+export default proxy;
 
-// Configure which paths should use middleware
+// Configure which paths should use proxy
 export const config = {
     matcher: ['/artisan/:path*', '/admin/:path*'],
 };
